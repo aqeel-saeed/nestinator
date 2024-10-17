@@ -1,0 +1,55 @@
+import { Body, Controller, Delete, Get, Param, Post, Put, UseGuards } from '@nestjs/common';
+import { ApiBearerAuth, ApiParam, ApiTags } from '@nestjs/swagger';
+import { CategoriesService } from './categories.service';
+import { apiResponse } from 'src/core/utils/auth.utils';
+import { FindOneParams } from 'src/shared/params/find-one.params';
+import { JwtAuthGuard } from 'src/auth/guards/jwt-auth.guard';
+import { UpdateCategoryDto } from './dto/update-category.dto';
+import { CreateCateogryDto } from './dto/create-category.dto';
+
+@ApiTags('Categories')
+@Controller('categories')
+export class CategoriesController {
+    constructor(
+        private readonly cateogriesService: CategoriesService
+    ) {}
+
+    @Get()
+    async getAll() {
+        const res = await this.cateogriesService.getAll();
+        return apiResponse(res, 'Categories retrieved successfully.');
+    }
+
+    @Get(':id')
+    @ApiParam({ name: 'id', type: Number, description: 'ID of the category' })
+    async getById(@Param() { id }: FindOneParams) {
+        const res = await this.cateogriesService.getById(+id);
+        return apiResponse(res, 'Category retrieved successfully.');
+    }
+
+    @ApiBearerAuth('Authorization')
+    @UseGuards(JwtAuthGuard)
+    @Post()
+    async createPost(@Body() category: CreateCateogryDto) {
+      const res = await this.cateogriesService.create(category);
+      return apiResponse(res, 'Category created successfully.');
+    }
+
+    @ApiBearerAuth('Authorization')
+    @UseGuards(JwtAuthGuard)
+    @ApiParam({ name: 'id', type: Number, description: 'ID of the category' })
+    @Put(':id')
+    async update(@Param() { id }: FindOneParams, @Body() category: UpdateCategoryDto) {
+        const res = this.cateogriesService.update(+id, category);
+        return apiResponse(res, 'Category updated successfully.');
+    }
+
+    @ApiBearerAuth('Authorization')
+    @UseGuards(JwtAuthGuard)
+    @ApiParam({ name: 'id', type: Number, description: 'ID of the category' })
+    @Delete(':id')
+    async deletePost(@Param() { id }: FindOneParams) {
+      await this.cateogriesService.delete(+id);
+      return apiResponse(null, 'Category deleted successfully.');
+    }
+}
