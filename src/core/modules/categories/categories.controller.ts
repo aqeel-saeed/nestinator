@@ -11,19 +11,19 @@ import { CreateCateogryDto } from './dto/create-category.dto';
 @Controller('categories')
 export class CategoriesController {
     constructor(
-        private readonly cateogriesService: CategoriesService
+        private readonly categoriesService: CategoriesService
     ) {}
 
     @Get()
     async getAll() {
-        const res = await this.cateogriesService.getAll();
+        const res = await this.categoriesService.getAll();
         return apiResponse(res, 'Categories retrieved successfully.');
     }
 
     @Get(':id')
     @ApiParam({ name: 'id', type: Number, description: 'ID of the category' })
     async getById(@Param() { id }: FindOneParams) {
-        const res = await this.cateogriesService.getById(+id);
+        const res = await this.categoriesService.getById(+id);
         return apiResponse(res, 'Category retrieved successfully.');
     }
 
@@ -31,7 +31,7 @@ export class CategoriesController {
     @UseGuards(JwtAuthGuard)
     @Post()
     async create(@Body() category: CreateCateogryDto) {
-      const res = await this.cateogriesService.create(category);
+      const res = await this.categoriesService.create(category);
       return apiResponse(res, 'Category created successfully.');
     }
 
@@ -40,7 +40,7 @@ export class CategoriesController {
     @ApiParam({ name: 'id', type: Number, description: 'ID of the category' })
     @Put(':id')
     async update(@Param() { id }: FindOneParams, @Body() category: UpdateCategoryDto) {
-        const res = this.cateogriesService.update(+id, category);
+        const res = this.categoriesService.update(+id, category);
         return apiResponse(res, 'Category updated successfully.');
     }
 
@@ -49,7 +49,7 @@ export class CategoriesController {
     @ApiParam({ name: 'id', type: Number, description: 'ID of the category' })
     @Delete(':id')
     async delete(@Param() { id }: FindOneParams) {
-      await this.cateogriesService.delete(+id);
+      await this.categoriesService.delete(+id);
       return apiResponse(null, 'Category deleted successfully.');
     }
 }
