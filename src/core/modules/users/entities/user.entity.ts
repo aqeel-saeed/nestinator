@@ -1,9 +1,9 @@
 import { Exclude } from "class-transformer";
-import { Column, Entity, JoinColumn, JoinTable, OneToMany, OneToOne, PrimaryGeneratedColumn } from "typeorm";
+import { Column, Entity, JoinColumn, OneToMany, OneToOne, PrimaryGeneratedColumn } from "typeorm";
 import { Address } from "./address.entity";
 import { Post } from "../../posts/entities/post.entity";
 
-@Entity()
+@Entity('users')
 export class User {
     @PrimaryGeneratedColumn()
     public id?: number;

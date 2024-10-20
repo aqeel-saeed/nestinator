@@ -1,7 +1,7 @@
 import { PermissionsEnum, permissionType } from "../../../../shared/enums/permissions.enum";
 import { Column, Entity, PrimaryGeneratedColumn } from "typeorm";
 
-@Entity()
+@Entity('permissions')
 export class Permission {
     @PrimaryGeneratedColumn()
     public id?: number;
