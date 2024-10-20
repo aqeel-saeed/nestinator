@@ -30,7 +30,7 @@ export class CategoriesController {
     @ApiBearerAuth('Authorization')
     @UseGuards(JwtAuthGuard)
     @Post()
-    async createPost(@Body() category: CreateCateogryDto) {
+    async create(@Body() category: CreateCateogryDto) {
       const res = await this.cateogriesService.create(category);
       return apiResponse(res, 'Category created successfully.');
     }
@@ -48,7 +48,7 @@ export class CategoriesController {
     @UseGuards(JwtAuthGuard)
     @ApiParam({ name: 'id', type: Number, description: 'ID of the category' })
     @Delete(':id')
-    async deletePost(@Param() { id }: FindOneParams) {
+    async delete(@Param() { id }: FindOneParams) {
       await this.cateogriesService.delete(+id);
       return apiResponse(null, 'Category deleted successfully.');
     }

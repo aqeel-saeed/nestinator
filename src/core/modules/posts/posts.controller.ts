@@ -15,23 +15,23 @@ export class PostsController {
   ) {}
  
   @Get()
-  async getAllPosts() {
-    const res = await this.postsService.getAllPosts();
+  async getAll() {
+    const res = await this.postsService.getAll();
     return apiResponse(res, 'Posts retrieved successfully.');
   }
  
   @Get(':id')
   @ApiParam({ name: 'id', type: Number, description: 'ID of the post' })
-  async getPostById(@Param() { id }: FindOneParams) {
-    const res = await this.postsService.getPostById(+id);
+  async getById(@Param() { id }: FindOneParams) {
+    const res = await this.postsService.getById(+id);
     return apiResponse(res, 'Post retrieved successfully.');
   }
   
   @ApiBearerAuth('Authorization')
   @UseGuards(JwtAuthGuard)
   @Post()
-  async createPost(@Body() post: CreatePostDto, @Req() req) {
-    const res = await this.postsService.createPost(post, req.user);
+  async create(@Body() post: CreatePostDto, @Req() req) {
+    const res = await this.postsService.create(post, req.user);
     return apiResponse(res, 'Post created successfully.');
   }
  
@@ -39,8 +39,8 @@ export class PostsController {
   @UseGuards(JwtAuthGuard)
   @ApiParam({ name: 'id', type: Number, description: 'ID of the post' })
   @Put(':id')
-  async updatePost(@Param() { id }: FindOneParams, @Body() post: UpdatePostDto, @Req() req) {
-    const res = await this.postsService.updatePost(+id, post, req.user);
+  async update(@Param() { id }: FindOneParams, @Body() post: UpdatePostDto, @Req() req) {
+    const res = await this.postsService.update(+id, post, req.user);
     return apiResponse(res, 'Post updated successfully.');
   }
  
@@ -48,8 +48,8 @@ export class PostsController {
   @UseGuards(JwtAuthGuard)
   @ApiParam({ name: 'id', type: Number, description: 'ID of the post' })
   @Delete(':id')
-  async deletePost(@Param() { id }: FindOneParams) {
-    await this.postsService.deletePost(+id);
+  async delete(@Param() { id }: FindOneParams) {
+    await this.postsService.delete(+id);
     return apiResponse(null, 'Post deleted successfully.');
   }
 }

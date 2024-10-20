@@ -12,7 +12,11 @@ export class PermissionsService {
         private readonly permissionRepository: Repository<Permission>,
     ) {}
 
-    async findByKey(key: string) {
+    async getAll() {
+        return await this.permissionRepository.find();
+    }
+    
+    async getByKey(key: string) {
         const permission = await this.permissionRepository.findOne({ where: { key } });
         if (!permission) {
             throw new EntityNotFoundException('Permission');
@@ -20,15 +24,11 @@ export class PermissionsService {
         return permission;
     }
 
-    async findById(id: number) {
+    async getById(id: number) {
         const permission = await this.permissionRepository.findOne({ where: { id } });
         if (!permission) {
             throw new EntityNotFoundException('Permission', id);
         }
         return permission;
-    }
-
-    async findAll() {
-        return await this.permissionRepository.find();
     }
 }

@@ -20,7 +20,7 @@ export class UsersService {
         throw new EntityNotFoundException('User');
     }
     
-    async findOne(id: number) {
+    async getOne(id: number) {
         const user = await this.userRepository.findOne({ where: { id } });
         if (user) {
             return user;

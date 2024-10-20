@@ -14,11 +14,11 @@ export class CategoriesService {
         private categoriesRepository: Repository<Category>,
     ) {}
 
-    getAll() {
+    async getAll() {
         return this.categoriesRepository.find();
     }
 
-    getById(id: number) {
+    async getById(id: number) {
         const category = this.categoriesRepository.findOne({ 
             where: { id }, 
             relations: ['posts']

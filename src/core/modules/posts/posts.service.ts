@@ -19,11 +19,11 @@ export class PostsService {
     private usersService: UsersService
   ) {}
 
-  getAllPosts() {
+  async getAll() {
     return this.postsRepository.find({ relations: ['author', 'categories'] });
   }
 
-  getPostById(id: number) {
+  async getById(id: number) {
     const post = this.postsRepository.findOne({ 
       where : { id }, 
       relations: ['author', 'categories']
@@ -34,7 +34,7 @@ export class PostsService {
     throw new EntityNotFoundException('Post', id);
   }
 
-  async updatePost(id: number, post: UpdatePostDto, user: User) {
+  async update(id: number, post: UpdatePostDto, user: User) {
     // TODO: check if this user has the permission to update the post
     const existingPost = await this.postsRepository.findOne({ where: { id }, relations: ['author', 'categories'] });
     if (!existingPost) {
@@ -55,9 +55,9 @@ export class PostsService {
     return updatedPost; 
   }
 
-  async createPost(post: CreatePostDto, user: User) {
+  async create(post: CreatePostDto, user: User) {
     // get user who create the post for attaching it
-    const userFromDB = await this.usersService.findOne(user.id);
+    const userFromDB = await this.usersService.getOne(user.id);
 
     // find categories
     // TODO: this step should be done in validator named 'isExisted' to check if this value is existed in a specific column in a specific table
@@ -76,7 +76,7 @@ export class PostsService {
     return newPost;
   }
 
-  async deletePost(id: number) {
+  async delete(id: number) {
     const deletedPost = await this.postsRepository.delete(id);
     if (!deletedPost.affected) {
       throw new EntityNotFoundException('Post', id);
