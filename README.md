@@ -76,4 +76,4 @@ $ npm run seed
 - [x] unify method names in controllers and services for all modules
 - [x] rename tables
 - [ ] refactor user-address relation (address dto for create and update, addresses service and controller and module)
-- [ ] add roles module with relations with permissions and users
+- [x] add roles module with relations with permissions and users
