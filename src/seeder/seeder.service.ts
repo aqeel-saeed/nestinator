@@ -11,7 +11,7 @@ export class SeederService {
 
     async seedAll() {
         await this.dataSource.transaction(async (entityManager: EntityManager) => {
-            // add all seeders here
+            // add all seeders here to run them
             await this.premissionSeeder.seed(entityManager);
         });
     }    
