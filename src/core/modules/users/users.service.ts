@@ -34,4 +34,23 @@ export class UsersService {
         await this.userRepository.save(newUser);
         return newUser;
     }
+
+    async getUserPermissions(userId: number) {
+        const user = await this.userRepository.findOne({
+            where: { id: userId },
+            relations: ['roles', 'roles.permissions']
+        });
+
+        if (!user) {
+            throw new EntityNotFoundException('User', userId);
+        }
+
+        const permissions = user.roles
+            .flatMap((role) => role.permissions)
+            .filter((permission, index, self) =>
+                index === self.findIndex((p) => p.key === permission.key)
+            );
+
+        return permissions;
+    }
 }
