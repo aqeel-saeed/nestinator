@@ -23,11 +23,11 @@ export class Post {
     @JoinTable({
         name: 'category_posts',
         joinColumn: {
-            name: 'post_id',
+            name: 'postId',
             referencedColumnName: 'id'
         },
         inverseJoinColumn: {
-            name: 'category_id',
+            name: 'categoryId',
             referencedColumnName: 'id'
         }
     })
