@@ -21,6 +21,9 @@ export class CreatePostDto {
 
   @IsArray()
   @IsInt({ each: true })
-  @IsExisted({ table: 'categories', column: 'id' })
+  @IsExisted({
+    table: 'categories',
+    column: 'id'
+  })
   categoryIds: number[];
 }

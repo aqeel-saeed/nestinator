@@ -1,4 +1,6 @@
 import { ApiProperty } from "@nestjs/swagger";
+import { IsArray, IsInt, IsOptional } from "class-validator";
+import { IsExisted } from "src/shared/validators/is-existed.validator";
 
 export class CreateUserDto {
     @ApiProperty({
@@ -18,4 +20,12 @@ export class CreateUserDto {
         required: true,
     })
     password: string;
+    
+    @IsArray()
+    @IsInt({ each: true })
+    @IsExisted({
+        table: 'roles',
+        column: 'id' 
+    })
+    roleIds?: number[];
 }

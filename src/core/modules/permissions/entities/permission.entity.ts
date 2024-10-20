@@ -1,5 +1,6 @@
 import { PermissionsEnum, permissionType } from "../../../../shared/enums/permissions.enum";
-import { Column, Entity, PrimaryGeneratedColumn } from "typeorm";
+import { Column, Entity, ManyToMany, PrimaryGeneratedColumn } from "typeorm";
+import { Role } from "../../roles/entities/role.entity";
 
 @Entity('permissions')
 export class Permission {
@@ -18,5 +19,6 @@ export class Permission {
     @Column()
     public name_ar: string;
 
-    // TODO: here we should have an M2M relation between permissions and roles
+    @ManyToMany(() => Role, (role: Role) => role.permissions)
+    public roles?: Role[];
 }

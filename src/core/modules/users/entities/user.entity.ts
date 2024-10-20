@@ -1,7 +1,8 @@
 import { Exclude } from "class-transformer";
-import { Column, Entity, JoinColumn, OneToMany, OneToOne, PrimaryGeneratedColumn } from "typeorm";
+import { Column, Entity, JoinColumn, ManyToMany, OneToMany, OneToOne, PrimaryGeneratedColumn } from "typeorm";
 import { Address } from "./address.entity";
 import { Post } from "../../posts/entities/post.entity";
+import { Role } from "../../roles/entities/role.entity";
 
 @Entity('users')
 export class User {
@@ -27,4 +28,7 @@ export class User {
 
     @OneToMany(() => Post, (post: Post) => post.author)
     public posts: Post[];
+
+    @ManyToMany(() => Role, (role: Role) => role.users)
+    public roles?: Role[];
 }

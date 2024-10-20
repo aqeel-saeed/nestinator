@@ -14,6 +14,7 @@ import { CategoriesModule } from './core/modules/categories/categories.module';
 import { IsExistedConstraint } from './shared/validators/is-existed.validator';
 import { PermissionsModule } from './core/modules/permissions/permissions.module';
 import { SeederModule } from './seeder/seeder.module';
+import { RolesModule } from './core/modules/roles/roles.module';
 
 @Module({
   imports: [
@@ -39,6 +40,7 @@ import { SeederModule } from './seeder/seeder.module';
     CategoriesModule, 
     PermissionsModule,
     SeederModule,
+    RolesModule,
   ],
   controllers: [AppController],
   providers: [
