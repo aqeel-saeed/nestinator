@@ -1,11 +1,10 @@
 import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Category } from './entities/category.entity';
-import { privateDecrypt } from 'crypto';
 import { In, Repository } from 'typeorm';
 import { EntityNotFoundException } from 'src/shared/exceptions/not-found.exception';
 import { UpdateCategoryDto } from './dto/update-category.dto';
-import { CreateCateogryDto } from './dto/create-category.dto';
+import { CreateCategoryDto } from './dto/create-category.dto';
 
 @Injectable()
 export class CategoriesService {
@@ -49,7 +48,7 @@ export class CategoriesService {
         throw new EntityNotFoundException('Category', id);
     }
 
-    async create(category: CreateCateogryDto) {
+    async create(category: CreateCategoryDto) {
         const newCategory = this.categoriesRepository.create(category);
         await this.categoriesRepository.save(newCategory);
         return newCategory;

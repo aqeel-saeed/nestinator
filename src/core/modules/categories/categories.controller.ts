@@ -5,7 +5,7 @@ import { apiResponse } from 'src/core/utils/auth.utils';
 import { FindOneParams } from 'src/shared/params/find-one.params';
 import { JwtAuthGuard } from 'src/auth/guards/jwt-auth.guard';
 import { UpdateCategoryDto } from './dto/update-category.dto';
-import { CreateCateogryDto } from './dto/create-category.dto';
+import { CreateCategoryDto } from './dto/create-category.dto';
 
 @ApiTags('Categories')
 @Controller('categories')
@@ -30,7 +30,7 @@ export class CategoriesController {
     @ApiBearerAuth('Authorization')
     @UseGuards(JwtAuthGuard)
     @Post()
-    async create(@Body() category: CreateCateogryDto) {
+    async create(@Body() category: CreateCategoryDto) {
       const res = await this.categoriesService.create(category);
       return apiResponse(res, 'Category created successfully.');
     }
