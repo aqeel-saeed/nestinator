@@ -3,8 +3,8 @@ import { DocumentBuilder, SwaggerDocumentOptions, SwaggerModule } from "@nestjs/
 
 export function setupSwagger(app: INestApplication) {
     const config = new DocumentBuilder()
-        .setTitle('BookStore Api')
-        .setDescription('My BookStore Api Documentation.')
+        .setTitle('Nestinator Api')
+        .setDescription('My Nestinator Api Documentation.')
         .setVersion('0.1')
         .addServer('api')
         .addBearerAuth(

@@ -26,7 +26,7 @@
 
 ## Description
 
-[Nest](https://github.com/nestjs/nest) Nest framework TypeScript core project, working as an Incubator for the nest of your project, to be lunched soon as a package to start your project with high level helpers and pre-installed packeges and utils and modules to help your start rapidly.
+[Nest](https://github.com/nestjs/nest) framework TypeScript core project, working as an Incubator for the nest of your project, to be lunched soon as a package to start your project with high level helpers and pre-installed packeges and utils and modules to help your start rapidly.
 
 ## Project setup
 
