@@ -10,7 +10,7 @@ export class Permission {
         type: "enum",
         enum: PermissionsEnum,
     })
-    public key: permissionType;
+    public key: string;
 
     @Column()
     public name_en: string;
