@@ -24,11 +24,11 @@ export class User {
         cascade: true
     })
     @JoinColumn()
-    public address: Address;
+    public address?: Address;
 
     @OneToMany(() => Post, (post: Post) => post.author)
-    public posts: Post[];
+    public posts?: Post[];
 
-    @ManyToMany(() => Role, (role: Role) => role.users)
+    @ManyToMany(() => Role, (role: Role) => role.users, { eager: true })
     public roles?: Role[];
 }
