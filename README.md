@@ -77,3 +77,8 @@ $ npm run seed
 - [x] rename tables
 - [ ] refactor user-address relation (address dto for create and update, addresses service and controller and module)
 - [x] add roles module with relations with permissions and users
+- [x] add log to the base seeder
+- [x] inject permissions in logged in user
+- [ ] add permissions guard
+- [ ] add params to permissions guard (for update and delete operations)
+- [ ] find a good way to attache m2m data when send them in the create and update operations without add them manually
