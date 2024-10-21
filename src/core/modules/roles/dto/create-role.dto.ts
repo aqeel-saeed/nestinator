@@ -1,10 +1,10 @@
 import { ApiProperty } from "@nestjs/swagger";
-import { IsArray, IsInt, IsNotEmpty, IsString } from "class-validator";
+import { IsArray, IsInt, IsNotEmpty, IsOptional, IsString } from "class-validator";
 import { IsExisted } from "src/shared/validators/is-existed.validator";
 
 export class CreateRoleDto {
     @ApiProperty({
-        example: 'This is a greate conent for the new post !',
+        example: 'Test Role',
         required: true,
     })
     @IsString()
@@ -12,7 +12,7 @@ export class CreateRoleDto {
     name_en: string;
 
     @ApiProperty({
-        example: 'This is a greate conent for the new post !',
+        example: 'دور التجربة',
         required: true,
     })
     @IsString()
@@ -20,7 +20,7 @@ export class CreateRoleDto {
     name_ar: string;
 
     @ApiProperty({
-        example: 'This is a greate conent for the new post !',
+        example: 'This role is only to test roles and permissions logic.',
         required: true,
     })
     @IsString()
@@ -28,7 +28,7 @@ export class CreateRoleDto {
     description_en: string;
     
     @ApiProperty({
-        example: 'This is a greate conent for the new post !',
+        example: 'هذا الدور فقط لتجربة عمل الأدوار والصلاحيات.',
         required: true,
     })
     @IsString()
@@ -41,5 +41,6 @@ export class CreateRoleDto {
         table: 'permissions',
         column: 'id' 
     })
-    permissionIds: number[];
+    @IsOptional()
+    permissionIds?: number[];
 }
