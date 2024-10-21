@@ -50,7 +50,10 @@ export class PostsService {
     }
     
     await this.postsRepository.update(id, postWithoutCategioryIds);
-    const updatedPost = await this.postsRepository.findOne({ where: { id }, relations: ['author', 'categories'] });
+    const updatedPost = await this.postsRepository.findOne({ 
+      where: { id },
+      relations: ['author', 'categories']
+    });
 
     return updatedPost; 
   }
@@ -60,11 +63,7 @@ export class PostsService {
     const userFromDB = await this.usersService.getOne(user.id);
 
     // find categories
-    // TODO: this step should be done in validator named 'isExisted' to check if this value is existed in a specific column in a specific table
     const categories = await this.categoriesService.getByIds(post.categoryIds);
-    if (!categories.length) {
-      throw new EntityNotFoundException('Category');
-    }
 
     const newPost = this.postsRepository.create({
       ...post,

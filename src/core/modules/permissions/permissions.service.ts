@@ -1,8 +1,7 @@
 import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Permission } from './entities/permission.entity';
-import { Repository } from 'typeorm';
-import { permissionType } from 'src/shared/enums/permissions.enum';
+import { In, Repository } from 'typeorm';
 import { EntityNotFoundException } from 'src/shared/exceptions/not-found.exception';
 
 @Injectable()
@@ -30,5 +29,13 @@ export class PermissionsService {
             throw new EntityNotFoundException('Permission', id);
         }
         return permission;
+    }
+
+    async getByIds(ids: number[]) {
+        const permissions = await this.permissionRepository.findBy({ id: In(ids) });
+        if (permissions) {
+            return permissions;
+        }
+        throw new EntityNotFoundException('Permission');
     }
 }

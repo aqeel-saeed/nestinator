@@ -4,7 +4,6 @@ import { RegisterDto } from './dto/register.dto';
 import { LoginDto } from './dto/login.dto';
 import { ApiBearerAuth, ApiTags } from '@nestjs/swagger';
 import { JwtAuthGuard } from './guards/jwt-auth.guard';
-import { UsersService } from 'src/core/modules/users/users.service';
 import { apiResponse } from 'src/core/utils/auth.utils';
 
 @ApiTags('Auth')
@@ -12,7 +11,6 @@ import { apiResponse } from 'src/core/utils/auth.utils';
 export class AuthController {
     constructor(
         private readonly authService: AuthService,
-        private readonly usersService: UsersService
     ) {}
 
     @Post('register')
@@ -34,7 +32,6 @@ export class AuthController {
     @Get('profile')
     async profile(@Request() req) {
         const reqUser = req.user;
-        const user = await this.usersService.getByEmail(reqUser.email);
-        return apiResponse(user, 'User profile retrieved successfully.');
+        return apiResponse(reqUser, 'User profile retrieved successfully.');
     }
 }

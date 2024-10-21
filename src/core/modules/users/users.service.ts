@@ -53,4 +53,11 @@ export class UsersService {
 
         return permissions;
     }
+
+    async getByIdWithPermissions(userId: number) {
+        return this.userRepository.findOne({
+            where: { id: userId },
+            relations: ['roles', 'roles.permissions'],
+        });
+    }
 }
