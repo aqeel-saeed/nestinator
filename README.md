@@ -82,3 +82,6 @@ $ npm run seed
 - [ ] add permissions guard
 - [ ] add params to permissions guard (for update and delete operations)
 - [ ] find a good way to attache m2m data when send them in the create and update operations without add them manually
+- [ ] add soft delete for all entities in a generic entity
+- [ ] add is_blocked to users
+- [ ] restrict blocked and not verified users to log in
