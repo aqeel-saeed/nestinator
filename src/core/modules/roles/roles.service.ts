@@ -5,12 +5,14 @@ import { In, Repository } from 'typeorm';
 import { Role } from './entities/role.entity';
 import { InjectRepository } from '@nestjs/typeorm';
 import { EntityNotFoundException } from 'src/shared/exceptions/not-found.exception';
+import { PermissionsService } from '../permissions/permissions.service';
 
 @Injectable()
 export class RolesService {
   constructor(
     @InjectRepository(Role)
     private readonly rolesRepository: Repository<Role>,
+    private readonly permissionsService: PermissionsService,
   ) {}
 
   async getAll() {
@@ -37,19 +39,37 @@ export class RolesService {
   }
 
   async update(id: number, role: UpdateRoleDto) {
-    await this.rolesRepository.update(id, role);
+    const existingRole = await this.rolesRepository.findOne({ where: { id }, relations: ['permissions'] });
+    if (!existingRole) {
+      throw new EntityNotFoundException('Role', id);
+    }
+
+    const { permissionIds, ...roleWithoutPermissions } = role;
+    if (permissionIds && permissionIds.length > 0) {
+      const permissions = await this.permissionsService.getByIds(permissionIds);
+      existingRole.permissions = permissions;
+      await this.rolesRepository.save(existingRole);
+    }
+
+    await this.rolesRepository.update(id, roleWithoutPermissions);
     const updatedRole = this.rolesRepository.findOne({
       where: { id },
       relations: ['permissions']
     });
-    if (updatedRole) {
-      return updatedRole;
-    }
-    throw new EntityNotFoundException('Role', id);
+
+    return updatedRole;
   }
 
   async create(role: CreateRoleDto) {
-    const newRole = this.rolesRepository.create(role);
+    // find categories
+    const permissions = await this.permissionsService.getByIds(role.permissionIds);
+
+    console.log('permissions:', permissions);
+    const newRole = this.rolesRepository.create({
+      ...role,
+      permissions: permissions
+    });
+
     await this.rolesRepository.save(newRole);
     return newRole;
   }
