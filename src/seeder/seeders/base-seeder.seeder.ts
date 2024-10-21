@@ -22,6 +22,7 @@ export abstract class BaseSeeder<T> {
 
         if (!exists) {
             const newRecord = entityManager.create(this.repository.target, data);
+            console.log('newRecord:', newRecord);
             await entityManager.save(this.repository.target, newRecord);
         }
     }
