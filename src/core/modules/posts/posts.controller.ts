@@ -13,17 +13,17 @@ export class PostsController {
   constructor(
     private readonly postsService: PostsService
   ) {}
- 
+
   @Get()
   async getAll() {
-    const res = await this.postsService.getAll();
+    const res = await this.postsService.findAll();
     return apiResponse(res, 'Posts retrieved successfully.');
   }
  
   @Get(':id')
   @ApiParam({ name: 'id', type: Number, description: 'ID of the post' })
   async getById(@Param() { id }: FindOneParams) {
-    const res = await this.postsService.getById(+id);
+    const res = await this.postsService.findById(+id);
     return apiResponse(res, 'Post retrieved successfully.');
   }
   
@@ -31,7 +31,8 @@ export class PostsController {
   @UseGuards(JwtAuthGuard)
   @Post()
   async create(@Body() post: CreatePostDto, @Req() req) {
-    const res = await this.postsService.create(post, req.user);
+    post['authorId'] = req.user.userId;
+    const res = await this.postsService.create(post);
     return apiResponse(res, 'Post created successfully.');
   }
  
@@ -40,7 +41,7 @@ export class PostsController {
   @ApiParam({ name: 'id', type: Number, description: 'ID of the post' })
   @Put(':id')
   async update(@Param() { id }: FindOneParams, @Body() post: UpdatePostDto, @Req() req) {
-    const res = await this.postsService.update(+id, post, req.user);
+    const res = await this.postsService.update(+id, post);
     return apiResponse(res, 'Post updated successfully.');
   }
  

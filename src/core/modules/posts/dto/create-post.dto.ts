@@ -25,5 +25,5 @@ export class CreatePostDto {
     table: 'categories',
     column: 'id'
   })
-  categoryIds: number[];
+  categoriesIds: number[];
 }

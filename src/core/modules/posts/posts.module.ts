@@ -13,6 +13,7 @@ import { CategoriesModule } from '../categories/categories.module';
     CategoriesModule
   ],
   controllers: [PostsController],
-  providers: [PostsService]
+  providers: [PostsService],
+  exports: [PostsService]
 })
 export class PostsModule {}
