@@ -1,63 +1,15 @@
 import { Injectable } from '@nestjs/common';
-import { InjectRepository } from '@nestjs/typeorm';
+import { CategoryRepository } from './repositories/category.repository';
+import { BaseService } from 'src/base/base.service';
 import { Category } from './entities/category.entity';
-import { In, Repository } from 'typeorm';
-import { EntityNotFoundException } from 'src/shared/exceptions/not-found.exception';
-import { UpdateCategoryDto } from './dto/update-category.dto';
-import { CreateCategoryDto } from './dto/create-category.dto';
+import { InjectRepository } from '@nestjs/typeorm';
 
 @Injectable()
-export class CategoriesService {
-    constructor(
-        @InjectRepository(Category)
-        private categoriesRepository: Repository<Category>,
-    ) {}
-
-    async getAll() {
-        return this.categoriesRepository.find();
-    }
-
-    async getById(id: number) {
-        const category = this.categoriesRepository.findOne({ 
-            where: { id }, 
-            relations: ['posts']
-        });
-        if (category) {
-            return category;
-        }
-        throw new EntityNotFoundException('Category', id);
-    }
-
-    async getByIds(ids: number[]) {
-        const categories = await this.categoriesRepository.findBy({ id: In(ids) });
-        if (categories) {
-            return categories;
-        }
-        throw new EntityNotFoundException('Category');
-    }
-
-    async update(id: number, category: UpdateCategoryDto) {
-        await this.categoriesRepository.update(id, category);
-        const updatedCategory = this.categoriesRepository.findOne({
-            where: { id },
-            relations: ['posts']
-        });
-        if (updatedCategory) {
-            return updatedCategory;
-        }
-        throw new EntityNotFoundException('Category', id);
-    }
-
-    async create(category: CreateCategoryDto) {
-        const newCategory = this.categoriesRepository.create(category);
-        await this.categoriesRepository.save(newCategory);
-        return newCategory;
-    }
-
-    async delete(id: number) {
-        const deletedCategory = await this.categoriesRepository.delete(id);
-        if (!deletedCategory.affected) {
-            throw new EntityNotFoundException('Category', id);
-        }
-    }
+export class CategoriesService extends BaseService<Category> {
+  constructor(
+    @InjectRepository(Category)
+    protected readonly categoryRepository: CategoryRepository
+  ) {
+    super(categoryRepository);
+  }
 }

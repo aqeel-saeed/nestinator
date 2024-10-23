@@ -16,14 +16,14 @@ export class CategoriesController {
 
     @Get()
     async getAll() {
-        const res = await this.categoriesService.getAll();
+        const res = await this.categoriesService.findAll();
         return apiResponse(res, 'Categories retrieved successfully.');
     }
 
     @Get(':id')
     @ApiParam({ name: 'id', type: Number, description: 'ID of the category' })
     async getById(@Param() { id }: FindOneParams) {
-        const res = await this.categoriesService.getById(+id);
+        const res = await this.categoriesService.findById(+id);
         return apiResponse(res, 'Category retrieved successfully.');
     }
 
@@ -40,7 +40,7 @@ export class CategoriesController {
     @ApiParam({ name: 'id', type: Number, description: 'ID of the category' })
     @Put(':id')
     async update(@Param() { id }: FindOneParams, @Body() category: UpdateCategoryDto) {
-        const res = this.categoriesService.update(+id, category);
+        const res = await this.categoriesService.update(+id, category);
         return apiResponse(res, 'Category updated successfully.');
     }
 
