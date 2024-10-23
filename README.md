@@ -69,7 +69,7 @@ $ npm run seed
 - [ ] make generic repositories instead of use it in the services only (find user by email should be a function in the repo, also filtering data and search should be same)
 - [ ] even if I am throwing an exception, i got the return apiResponse message
 - [ ] permission assign dto
-- [ ] permissions controller and service
+- [x] permissions controller and service
 - [x] generic seeder 
 - [x] seeding script
 - [x] seeding command
@@ -79,7 +79,7 @@ $ npm run seed
 - [x] add roles module with relations with permissions and users
 - [x] add log to the base seeder
 - [x] inject permissions in logged in user
-- [ ] add permissions guard
+- [x] add permissions guard
 - [ ] add params to permissions guard (for update and delete operations)
 - [ ] find a good way to attache m2m data when send them in the create and update operations without add them manually
 - [ ] add soft delete for all entities in a generic entity
