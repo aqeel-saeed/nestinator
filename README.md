@@ -88,11 +88,12 @@ $ npm run seed
 - [ ] restrict blocked and not verified users to log in
 - [x] add base repository
 - [x] add base service
+- [ ] use the entity not found exception in the base service
 - [ ] add base controller
 - [ ] apply a query builder logic in the base repository
 - [ ] add query builder options to the base controller
-- [ ] use base service in all modules
-- [ ] use base repo in all modules
+- [x] use base service in all modules
+- [x] use base repo in all modules
 - [ ] use base controller in all modules
 - [ ] use controllers options in all modules
 - [ ] find a way to access request user in services of entities which has a relation with user (like post), or inject it in the dto
