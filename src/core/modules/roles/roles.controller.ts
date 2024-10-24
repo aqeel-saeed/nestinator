@@ -16,14 +16,14 @@ export class RolesController {
 
   @Get()
   async getAll() {
-    const res = await this.rolesService.getAll();
+    const res = await this.rolesService.findAll();
     return apiResponse(res, 'Roles retrieved successfully.')
   }
 
   @Get(':id')
     @ApiParam({ name: 'id', type: Number, description: 'ID of the role' })
     async getById(@Param() { id }: FindOneParams) {
-        const res = await this.rolesService.getById(+id);
+        const res = await this.rolesService.findById(+id);
         return apiResponse(res, 'Role retrieved successfully.');
     }
 
