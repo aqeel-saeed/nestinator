@@ -9,6 +9,7 @@ import { User } from '../core/modules/users/entities/user.entity';
 import { Address } from '../core/modules/users/entities/address.entity';
 import { Post } from '../core/modules/posts/entities/post.entity';
 import { Category } from '../core/modules/categories/entities/category.entity';
+import { AdminUserSeeder } from './seeders/admin-user.seeder';
 
 @Module({
   imports: [
@@ -25,6 +26,7 @@ import { Category } from '../core/modules/categories/entities/category.entity';
   providers: [
     SeederService,
     PermissionSeeder,
+    AdminUserSeeder,
   ],
   exports: [
     SeederService

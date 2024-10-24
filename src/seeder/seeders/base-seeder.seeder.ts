@@ -6,13 +6,13 @@ export abstract class BaseSeeder<T> {
     ) {}
 
     async seed(entityManager: EntityManager) {
-        const seedData = this.getSeedData();
+        const seedData = await this.getSeedData();
         for (const data of seedData) {
             await this.checkAndInsert(data, entityManager);
         }
     }
 
-    protected abstract getSeedData(): T[];
+    protected abstract getSeedData(): T[] | Promise<T[]>;
 
     private async checkAndInsert(data: T, entityManager: EntityManager): Promise<void> {
         const exists = await entityManager.findOne(
