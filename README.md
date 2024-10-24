@@ -97,3 +97,5 @@ $ npm run seed
 - [ ] use base controller in all modules
 - [ ] use controllers options in all modules
 - [ ] find a way to access request user in services of entities which has a relation with user (like post), or inject it in the dto
+- [ ] login using gmail
+- [ ] login using facebook
