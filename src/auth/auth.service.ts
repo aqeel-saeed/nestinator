@@ -57,7 +57,7 @@ export class AuthService {
             const createdUser = await this.usersService.create({
                 ...registerData,
                 password: hashedPassword
-            });
+            }) as User;
             return this.makeToken(createdUser);
         } catch (error) {
             if (error?.code === PostgresErrorCode.UniqueViolation) {
