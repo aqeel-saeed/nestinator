@@ -13,14 +13,14 @@ export class PermissionsController {
 
     @Get()
     async getAll() {
-        const res = await this.permissionsService.getAll();
+        const res = await this.permissionsService.findAll();
         return apiResponse(res, 'Permissions retrieved successfully.');
     }
 
     @Get(':id')
     @ApiParam({ name: 'id', type: Number, description: 'ID of the permission' })
     async getById(@Param() { id }: FindOneParams) {
-        const res = await this.permissionsService.getById(+id);
+        const res = await this.permissionsService.findById(+id);
         return apiResponse(res, 'Permission retrieved successfully.')
     }
 }
