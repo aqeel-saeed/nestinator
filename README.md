@@ -99,3 +99,4 @@ $ npm run seed
 - [ ] find a way to access request user in services of entities which has a relation with user (like post), or inject it in the dto
 - [ ] login using gmail
 - [ ] login using facebook
+- [ ] filtering data dto, pass it in the findAll method (use it in the query builder)
