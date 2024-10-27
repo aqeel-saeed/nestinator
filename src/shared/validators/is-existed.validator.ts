@@ -21,6 +21,10 @@ export class IsExistedConstraint implements ValidatorConstraintInterface {
         value: any,
         args?: ValidationArguments
     ): Promise<boolean> {
+        if (value === null || value === undefined) {
+            return true;
+        }
+
         // catch options from decorator
         const {table, column}: IsExistedInterface = args.constraints[0];
 
