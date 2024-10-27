@@ -3,9 +3,9 @@ import { RolesService } from './roles.service';
 import { CreateRoleDto } from './dto/create-role.dto';
 import { UpdateRoleDto } from './dto/update-role.dto';
 import { ApiBearerAuth, ApiParam, ApiTags } from '@nestjs/swagger';
-import { apiResponse } from 'src/core/utils/utils';
 import { JwtAuthGuard } from 'src/auth/guards/jwt-auth.guard';
 import { FindOneParams } from 'src/shared/params/find-one.params';
+import { apiResponse } from 'src/core/utils/utils';
 
 @ApiTags('Roles')
 @Controller('roles')

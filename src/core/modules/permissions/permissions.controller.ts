@@ -1,8 +1,8 @@
 import { Controller, Get, Param } from '@nestjs/common';
 import { PermissionsService } from './permissions.service';
 import { ApiParam, ApiTags } from '@nestjs/swagger';
-import { apiResponse } from 'src/core/utils/utils';
 import { FindOneParams } from 'src/shared/params/find-one.params';
+import { apiResponse } from 'src/core/utils/utils';
 
 @ApiTags('Permissions')
 @Controller('permissions')
