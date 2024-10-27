@@ -1,5 +1,5 @@
 import { ApiProperty } from "@nestjs/swagger";
-import { IsArray, IsInt, IsNotEmpty, IsString } from "class-validator";
+import { IsArray, IsInt, IsNotEmpty, IsOptional, IsString } from "class-validator";
 import { IsExisted } from "src/shared/validators/is-existed.validator";
 
 export class CreatePostDto {
@@ -19,11 +19,16 @@ export class CreatePostDto {
   @IsNotEmpty()
   title: string;
 
+  @ApiProperty({
+    example: [1, 2],
+    required: false,
+  })
   @IsArray()
   @IsInt({ each: true })
   @IsExisted({
     table: 'categories',
     column: 'id'
   })
-  categoriesIds: number[];
+  @IsOptional()
+  categoriesIds?: number[];
 }
