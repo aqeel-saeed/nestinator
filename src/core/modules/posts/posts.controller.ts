@@ -5,7 +5,7 @@ import { PostsService } from './posts.service';
 import { ApiBearerAuth, ApiParam, ApiTags } from '@nestjs/swagger';
 import { FindOneParams } from 'src/shared/params/find-one.params';
 import { JwtAuthGuard } from 'src/auth/guards/jwt-auth.guard';
-import { apiResponse } from 'src/core/utils/auth.utils';
+import { apiResponse } from 'src/core/utils/utils';
  
 @ApiTags('Posts')
 @Controller('posts')
