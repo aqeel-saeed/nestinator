@@ -100,3 +100,6 @@ $ npm run seed
 - [ ] login using gmail
 - [ ] login using facebook
 - [ ] filtering data dto, pass it in the findAll method (use it in the query builder)
+- [ ] make apiResponse a method to return a response in the base controller
+- [ ] add the status code as a param in the apiResponse method in the base controller (default is 200) 
+- [ ] separate returning response logic into two different methods, one for the success and another for the fail
