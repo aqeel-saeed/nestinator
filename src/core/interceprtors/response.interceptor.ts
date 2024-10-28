@@ -16,6 +16,8 @@ export class ResponseInterceptor implements NestInterceptor {
             map((res: unknown) => this.responseHandler(res, context)),
             catchError((err: HttpException) =>
                 throwError(() => this.errorHandler(err, context)),
+                // sometimes when debugging I can not see the exception message, so I am using this instead of the using errorHandler method
+                // throwError(err),
             ),
         );
     }
