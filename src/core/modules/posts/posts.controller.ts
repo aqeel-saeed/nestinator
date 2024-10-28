@@ -6,25 +6,16 @@ import { ApiBearerAuth, ApiParam, ApiTags } from '@nestjs/swagger';
 import { FindOneParams } from 'src/shared/params/find-one.params';
 import { JwtAuthGuard } from 'src/auth/guards/jwt-auth.guard';
 import { apiResponse } from 'src/core/utils/utils';
+import { BaseController } from 'src/base/base.controller';
+import { Post as PostEntity } from './entities/post.entity';
  
 @ApiTags('Posts')
 @Controller('posts')
-export class PostsController {
+export class PostsController extends BaseController<PostEntity, CreatePostDto, UpdatePostDto> {
   constructor(
     private readonly postsService: PostsService
-  ) {}
-
-  @Get()
-  async getAll() {
-    const res = await this.postsService.findAll();
-    return apiResponse(res, 'Posts retrieved successfully.');
-  }
- 
-  @Get(':id')
-  @ApiParam({ name: 'id', type: Number, description: 'ID of the post' })
-  async getById(@Param() { id }: FindOneParams) {
-    const res = await this.postsService.findById(+id);
-    return apiResponse(res, 'Post retrieved successfully.');
+  ) {
+    super(postsService);
   }
   
   @ApiBearerAuth('Authorization')
@@ -32,25 +23,8 @@ export class PostsController {
   @Post()
   async create(@Body() post: CreatePostDto, @Req() req) {
     post['authorId'] = req.user.userId;
-    const res = await this.postsService.create(post);
-    return apiResponse(res, 'Post created successfully.');
-  }
- 
-  @ApiBearerAuth('Authorization')
-  @UseGuards(JwtAuthGuard)
-  @ApiParam({ name: 'id', type: Number, description: 'ID of the post' })
-  @Put(':id')
-  async update(@Param() { id }: FindOneParams, @Body() post: UpdatePostDto, @Req() req) {
-    const res = await this.postsService.update(+id, post);
-    return apiResponse(res, 'Post updated successfully.');
-  }
- 
-  @ApiBearerAuth('Authorization')
-  @UseGuards(JwtAuthGuard)
-  @ApiParam({ name: 'id', type: Number, description: 'ID of the post' })
-  @Delete(':id')
-  async delete(@Param() { id }: FindOneParams) {
-    await this.postsService.delete(+id);
-    return apiResponse(null, 'Post deleted successfully.');
+    const res = await this.service.create(post);
+    // const res = await this.postsService.create(post);
+    return apiResponse(res, 'Item created successfully.');
   }
 }

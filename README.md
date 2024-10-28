@@ -84,17 +84,18 @@ $ npm run seed
 - [ ] add params to permissions guard (for update and delete operations)
 - [x] find a good way to attache m2m data when send them in the create and update operations without add them manually
 - [ ] add soft delete for all entities in a generic entity
+- [ ] override the delete method in the repository (or modify it in the service) to check if the entity can be soft deleted or not
 - [ ] add is_blocked to users
 - [ ] restrict blocked and not verified users to log in
 - [x] add base repository
 - [x] add base service
 - [ ] use the entity not found exception in the base service
-- [ ] add base controller
+- [x] add base controller
 - [ ] apply a query builder logic in the base repository
 - [ ] add query builder options to the base controller
 - [x] use base service in all modules
 - [x] use base repo in all modules
-- [ ] use base controller in all modules
+- [x] use base controller in all modules
 - [ ] use controllers options in all modules
 - [ ] find a way to access request user in services of entities which has a relation with user (like post), or inject it in the dto
 - [ ] login using gmail
