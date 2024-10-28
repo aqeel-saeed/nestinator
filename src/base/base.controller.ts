@@ -17,7 +17,6 @@ export class BaseController<
         protected readonly service: BaseService<T>,
     ) {}
 
-    @RequirePermissions()
     @Get()
     async findAll() {
         const res = await this.service.findAll();
