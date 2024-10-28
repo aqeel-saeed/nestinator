@@ -103,3 +103,4 @@ $ npm run seed
 - [ ] make apiResponse a method to return a response in the base controller
 - [ ] add the status code as a param in the apiResponse method in the base controller (default is 200) 
 - [ ] separate returning response logic into two different methods, one for the success and another for the fail
+- [ ] apply permissions in a generic way into the base controller so all controller has the permissions decorator by default
