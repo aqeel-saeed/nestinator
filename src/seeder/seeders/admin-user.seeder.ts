@@ -2,7 +2,7 @@ import { Injectable } from "@nestjs/common";
 import { BaseSeeder } from "./base-seeder.seeder";
 import { InjectRepository } from "@nestjs/typeorm";
 import { Repository } from "typeorm";
-import { User } from "src/core/modules/users/entities/user.entity";
+import { User } from "../../core/modules/users/entities/user.entity";
 import * as bcrypt from 'bcrypt';
 
 @Injectable()
