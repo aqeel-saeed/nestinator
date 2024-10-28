@@ -9,20 +9,27 @@ export class PermissionsGuard implements CanActivate {
     ) {}
 
     async canActivate(context: ExecutionContext) {
-        const requiredPermissions = this.reflector.getAllAndOverride<permissionType[]>(
+        const permissions = this.reflector.getAllAndOverride<Record<string, permissionType[] | permissionType>>(
             'permissions',
             [
                 context.getHandler(),
                 context.getClass()
             ]
         );
-
-        if (!requiredPermissions) {
+        
+        if (!permissions) {
             return true;
         }
 
         const request = context.switchToHttp().getRequest();
         const user = request.user;
+
+        const methodName = context.getHandler().name;
+        let requiredPermissions = permissions[methodName];
+
+        if (!Array.isArray(requiredPermissions)) {
+            requiredPermissions = [requiredPermissions]
+        }
 
         if (!user || !user.permissions) {
             throw new ForbiddenException(
