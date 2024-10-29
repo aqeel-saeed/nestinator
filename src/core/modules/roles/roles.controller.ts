@@ -1,19 +1,30 @@
-import { Controller, Get, Post, Body, Patch, Param, Delete, UseGuards, Put } from '@nestjs/common';
-import { RolesService } from './roles.service';
+import { Body, Controller, Post, Req } from '@nestjs/common';
 import { CreateRoleDto } from './dto/create-role.dto';
 import { UpdateRoleDto } from './dto/update-role.dto';
-import { ApiBearerAuth, ApiParam, ApiTags } from '@nestjs/swagger';
-import { JwtAuthGuard } from 'src/auth/guards/jwt-auth.guard';
-import { FindOneParams } from 'src/shared/params/find-one.params';
+import { RolesService } from './roles.service';
 import { apiResponse } from 'src/core/utils/utils';
-import { BaseController } from 'src/base/base.controller';
 import { Role } from './entities/role.entity';
+import { ControllerPermissions } from '../permissions/decorators/controller-permissions.decorator';
+import { baseControllerFactory } from "src/base/base.controller";
+import { UseAuthAndPermissionsIf } from 'src/shared/decorators/conditional-auth.decorator';
+import { rolesControllerPermissions } from './permissions/roles-controller-permissions';
+import { rolesControllerConfig } from './roles.config';
 
-@ApiTags('Roles')
-@Controller('roles')
-export class RolesController extends BaseController<Role, CreateRoleDto, UpdateRoleDto> {
+const BaseController = baseControllerFactory<
+    Role,
+    CreateRoleDto,
+    UpdateRoleDto
+  >(
+    rolesControllerConfig,
+    CreateRoleDto,
+    UpdateRoleDto
+  );
+
+@Controller(rolesControllerConfig.endpointName)
+@ControllerPermissions(rolesControllerPermissions)
+export class RolesController extends BaseController {
   constructor(
-    private readonly rolesService: RolesService
+     readonly rolesService: RolesService,
   ) {
     super(rolesService);
   }

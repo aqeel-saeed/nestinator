@@ -1,31 +1,43 @@
-import { Controller } from '@nestjs/common';
-import { ApiTags } from '@nestjs/swagger';
-import { BaseController } from 'src/base/base.controller';
-import { User } from './entities/user.entity';
-import { UpdateUserDto } from './dto/update-user.dto';
+import { Body, Controller, Post} from '@nestjs/common';
 import { CreateUserDto } from './dto/create-user.dto';
+import { UpdateUserDto } from './dto/update-user.dto';
 import { UsersService } from './users.service';
+import { User } from './entities/user.entity';
+import { ControllerPermissions } from '../permissions/decorators/controller-permissions.decorator';
+import { baseControllerFactory } from "src/base/base.controller";
+import { usersControllerPermissions } from './permissions/users-controller-permissions';
+import { usersControllerConfig } from './users.config';
+import { UseAuthAndPermissionsIf } from 'src/shared/decorators/conditional-auth.decorator';
 import { apiResponse } from 'src/core/utils/utils';
+import * as bcrypt from 'bcrypt';
 
-@ApiTags('Users')
-@Controller('users')
-export class UsersController extends BaseController<User, CreateUserDto, UpdateUserDto> {
-    constructor(
-        private readonly usersService: UsersService,
-    ) {
-        super(usersService);
-    }
+const BaseController = baseControllerFactory<
+    User,
+    CreateUserDto,
+    UpdateUserDto
+  >(
+    usersControllerConfig,
+    CreateUserDto,
+    UpdateUserDto
+  );
 
-    // TODO: should return a response for a failure not a success
-    async create(data, req) {
-        return apiResponse(null, 'Create method not supported in this controller.')
-    }
+@Controller(usersControllerConfig.endpointName)
+@ControllerPermissions(usersControllerPermissions)
+export class UsersController extends BaseController {
+  constructor(
+     readonly usersService: UsersService,
+  ) {
+    super(usersService);
+  }
 
-    async update(id, data, req) {
-        return apiResponse(null, 'Update method not supported in this controller.');
-    }
+  @UseAuthAndPermissionsIf(usersControllerConfig.authOptions.getUsingAuthBoolean().create)
+  @Post()
+  async create(@Body() user: CreateUserDto) {
+    // hashing password before create user
+    const hashedPassword = await bcrypt.hash(user.password, 10);
+    user['password'] = hashedPassword;
 
-    async delete(id) {
-        return apiResponse(null, 'Delete method not supported in this controller.');
-    }
+    const res = await this.service.create(user);
+    return apiResponse(res, `${usersControllerConfig.entitySingleName} created successfully.`);
+  }
 }
