@@ -27,6 +27,13 @@ export class PermissionsGuard implements CanActivate {
         const methodName = context.getHandler().name;
         let requiredPermissions = permissions[methodName];
 
+        // console.log('DD req permissions', requiredPermissions);
+        // console.log('DD user permissions', user.permissions);
+
+        if (!requiredPermissions) {
+            return true;
+        }
+
         if (!Array.isArray(requiredPermissions)) {
             requiredPermissions = [requiredPermissions]
         }
