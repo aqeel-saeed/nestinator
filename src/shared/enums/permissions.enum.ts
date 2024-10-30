@@ -12,10 +12,10 @@ export const PermissionsEnum = {
     ...UserPermissionsEnum,
 }
 
-export type permissionType = 
-    PostPermissionsEnum | 
-    CategoryPermissionsEnum |
-    PermissionPermissionsEnum |
-    RolePermissionsEnum |
-    UserPermissionsEnum
+export type permissionType =  
+    | PostPermissionsEnum
+    | CategoryPermissionsEnum
+    | PermissionPermissionsEnum
+    | RolePermissionsEnum
+    | UserPermissionsEnum
     ; 
