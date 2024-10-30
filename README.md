@@ -31,7 +31,11 @@
 ## Project setup
 
 ```bash
+# install dependencies
 $ npm install
+
+# initiat .env file
+$ opy .env.example .env
 ```
 
 ## Compile and run the project
