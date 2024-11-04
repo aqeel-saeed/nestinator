@@ -5,8 +5,9 @@ import { Controller } from "@nestjs/common";
 import { ControllerPermissions } from "./decorators/controller-permissions.decorator";
 import { permissionsControllerPermissions } from "./permissions/permissions-controller-permissions";
 import { PermissionsService } from "./permissions.service";
-import { apiResponse } from "src/core/utils/utils";
+import { apiResponse } from "src/shared/utils/utils";
 import { FindOneParams } from "src/shared/params/find-one.params";
+import { ControllerConfig } from "src/base/decorators/controller-config.decorator";
 
 const BaseController = baseControllerFactory<
     Permission,
@@ -20,6 +21,7 @@ const BaseController = baseControllerFactory<
 
 @Controller(permissionsControllerConfig.endpointName)
 @ControllerPermissions(permissionsControllerPermissions)
+@ControllerConfig(permissionsControllerConfig)
 export class PermissionsController extends BaseController {
     constructor(
         readonly permissionsService: PermissionsService,

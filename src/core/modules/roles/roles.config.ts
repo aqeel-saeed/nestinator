@@ -8,4 +8,6 @@ export const rolesControllerConfig: BaseControllerConfig = {
     entitySingleName: 'Role',
     entityPluralName: 'Roles',
     authOptions: new BaseControllerAuthOptions(rolesControllerPermissions),
+    ownerShipRelationPath: [],
+    ownerField: '',
 }

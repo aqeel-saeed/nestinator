@@ -9,12 +9,13 @@ import { UsersModule } from './core/modules/users/users.module';
 import { AuthModule } from './auth/auth.module';
 import * as Joi from '@hapi/joi';
 import { APP_FILTER } from '@nestjs/core';
-import { ExceptionsLoggerFilter } from './core/utils/exceptions-logger.filter';
+import { ExceptionsLoggerFilter } from './shared/utils/exceptions-logger.filter';
 import { CategoriesModule } from './core/modules/categories/categories.module';
 import { IsExistedConstraint } from './shared/validators/is-existed.validator';
 import { PermissionsModule } from './core/modules/permissions/permissions.module';
 import { SeederModule } from './seeder/seeder.module';
 import { RolesModule } from './core/modules/roles/roles.module';
+import { SharedModule } from './shared/shared.module';
 
 @Module({
   imports: [
@@ -41,6 +42,7 @@ import { RolesModule } from './core/modules/roles/roles.module';
     PermissionsModule,
     SeederModule,
     RolesModule,
+    SharedModule,
   ],
   controllers: [AppController],
   providers: [
@@ -49,9 +51,11 @@ import { RolesModule } from './core/modules/roles/roles.module';
       useClass: ExceptionsLoggerFilter,
     },
     AppService,
-    IsExistedConstraint
+    IsExistedConstraint,
   ],
-  exports: [IsExistedConstraint]
+  exports: [
+    IsExistedConstraint,
+  ]
 })
 export class AppModule implements NestModule {
   configure(consumer: MiddlewareConsumer) {

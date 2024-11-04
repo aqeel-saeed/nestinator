@@ -8,4 +8,6 @@ export const postsControllerConfig: BaseControllerConfig = {
     entitySingleName: 'Post',
     entityPluralName: 'Posts',
     authOptions: new BaseControllerAuthOptions(postsControllerPermissions),
+    ownerShipRelationPath: [],
+    ownerField: 'authorId',
 }

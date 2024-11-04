@@ -14,4 +14,10 @@ export interface BaseControllerConfig {
 
     // crudAuthOptions: ;
     authOptions: BaseControllerAuthOptions;
+
+    // the path from the entity to the id, to know how to check entity ownership in permissions
+    ownerShipRelationPath: string[],
+
+    // the name of the ownership field in the entity
+    ownerField: string,
 }

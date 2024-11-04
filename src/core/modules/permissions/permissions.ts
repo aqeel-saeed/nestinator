@@ -12,6 +12,8 @@ export const permissions: Permission[] = [
     { key: PostPermissionsEnum.POST_CREATE, name_en: 'create a post', name_ar: 'إنشاء منشور' },
     { key: PostPermissionsEnum.POST_UPDATE, name_en: 'update a post', name_ar: 'تعديل منشور' },
     { key: PostPermissionsEnum.POST_DELETE, name_en: 'delete a post', name_ar: 'حذف منشور' },
+    { key: PostPermissionsEnum.POST_UPDATE_OWN, name_en: 'update owned posts only', name_ar: 'تعديل المنشورات المملوكة فقط' },
+    { key: PostPermissionsEnum.POST_DELETE_OWN, name_en: 'delete owned posts only', name_ar: 'حذف المنشورات المملوكة فقط' },
     // Categories Permissions
     { key: CategoryPermissionsEnum.CATEGORY_INDEX, name_en: 'index all categories', name_ar: 'استعراض كافة التصنيفات' },
     { key: CategoryPermissionsEnum.CATEGORY_SHOW, name_en: 'show category details', name_ar: 'عرض تفاصيل تصنيف' },

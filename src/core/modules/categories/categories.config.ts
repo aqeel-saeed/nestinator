@@ -8,4 +8,6 @@ export const categoriesControllerConfig: BaseControllerConfig = {
     entitySingleName: 'Category',
     entityPluralName: 'Categories',
     authOptions: new BaseControllerAuthOptions(categoriesControllerPermissions),
+    ownerShipRelationPath: [],
+    ownerField: '',
 }

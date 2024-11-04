@@ -8,8 +8,9 @@ import { baseControllerFactory } from "src/base/base.controller";
 import { usersControllerPermissions } from './permissions/users-controller-permissions';
 import { usersControllerConfig } from './users.config';
 import { UseAuthAndPermissionsIf } from 'src/shared/decorators/conditional-auth.decorator';
-import { apiResponse } from 'src/core/utils/utils';
+import { apiResponse } from 'src/shared/utils/utils';
 import * as bcrypt from 'bcrypt';
+import { ControllerConfig } from 'src/base/decorators/controller-config.decorator';
 
 const BaseController = baseControllerFactory<
     User,
@@ -23,6 +24,7 @@ const BaseController = baseControllerFactory<
 
 @Controller(usersControllerConfig.endpointName)
 @ControllerPermissions(usersControllerPermissions)
+@ControllerConfig(usersControllerConfig)
 export class UsersController extends BaseController {
   constructor(
      readonly usersService: UsersService,

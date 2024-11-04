@@ -1,6 +1,6 @@
 import { Body, Delete, Get, Param, Post, Put, Req } from "@nestjs/common";
 import { BaseService } from "./base.service";
-import { apiResponse } from "src/core/utils/utils";
+import { apiResponse } from "src/shared/utils/utils";
 import { ApiBody, ApiParam, ApiTags } from "@nestjs/swagger";
 import { FindOneParams } from "src/shared/params/find-one.params";
 import { DeepPartial } from "typeorm";
