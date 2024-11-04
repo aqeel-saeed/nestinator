@@ -85,7 +85,7 @@ $ npm run seed
 - [x] add log to the base seeder
 - [x] inject permissions in logged in user
 - [x] add permissions guard
-- [ ] add params to permissions guard (for update and delete operations)
+- [x] add params to permissions guard (for update and delete operations)
 - [x] find a good way to attache m2m data when send them in the create and update operations without add them manually
 - [ ] add soft delete for all entities in a generic entity
 - [ ] override the delete method in the repository (or modify it in the service) to check if the entity can be soft deleted or not
