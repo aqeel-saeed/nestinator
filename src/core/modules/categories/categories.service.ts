@@ -8,7 +8,7 @@ import { InjectRepository } from '@nestjs/typeorm';
 export class CategoriesService extends BaseService<Category> {
   constructor(
     @InjectRepository(Category)
-    protected readonly categoryRepository: CategoryRepository
+    protected readonly categoryRepository: CategoryRepository,
   ) {
     super(categoryRepository);
   }

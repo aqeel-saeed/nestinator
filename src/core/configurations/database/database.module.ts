@@ -1,9 +1,7 @@
-
 import { Module } from '@nestjs/common';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { ConfigModule, ConfigService } from '@nestjs/config';
-import { IsExistedConstraint } from 'src/shared/validators/is-existed.validator';
- 
+
 @Module({
   imports: [
     TypeOrmModule.forRootAsync({
@@ -21,7 +19,7 @@ import { IsExistedConstraint } from 'src/shared/validators/is-existed.validator'
         autoLoadEntities: true,
         synchronize: true,
         seeds: ['dist/**/*.seeder.{ts,js}'],
-      })
+      }),
     }),
   ],
 })

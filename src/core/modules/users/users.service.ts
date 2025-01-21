@@ -7,44 +7,45 @@ import { UserRepository } from './repositories/user.repository';
 
 @Injectable()
 export class UsersService extends BaseService<User> {
-    constructor(
-        @InjectRepository(User)
-        private userRepository: UserRepository
-    ) {
-        super(userRepository);
+  constructor(
+    @InjectRepository(User)
+    private userRepository: UserRepository,
+  ) {
+    super(userRepository);
+  }
+
+  async getByEmail(email: string) {
+    const user = await this.userRepository.findOne({ where: { email } });
+    if (user) {
+      return user;
+    }
+    throw new EntityNotFoundException('User');
+  }
+
+  async getUserPermissions(userId: number) {
+    const user = await this.userRepository.findOne({
+      where: { id: userId },
+      relations: ['roles', 'roles.permissions'],
+    });
+
+    if (!user) {
+      throw new EntityNotFoundException('User', userId);
     }
 
-    async getByEmail(email: string) {
-        const user = await this.userRepository.findOne({ where: { email } });
-        if (user) {
-            return user;
-        }
-        throw new EntityNotFoundException('User');
-    }
+    const permissions = user.roles
+      .flatMap((role) => role.permissions)
+      .filter(
+        (permission, index, self) =>
+          index === self.findIndex((p) => p.key === permission.key),
+      );
 
-    async getUserPermissions(userId: number) {
-        const user = await this.userRepository.findOne({
-            where: { id: userId },
-            relations: ['roles', 'roles.permissions']
-        });
+    return permissions;
+  }
 
-        if (!user) {
-            throw new EntityNotFoundException('User', userId);
-        }
-
-        const permissions = user.roles
-            .flatMap((role) => role.permissions)
-            .filter((permission, index, self) =>
-                index === self.findIndex((p) => p.key === permission.key)
-            );
-
-        return permissions;
-    }
-
-    async getByIdWithPermissions(userId: number) {
-        return this.userRepository.findOne({
-            where: { id: userId },
-            relations: ['roles', 'roles.permissions'],
-        });
-    }
+  async getByIdWithPermissions(userId: number) {
+    return this.userRepository.findOne({
+      where: { id: userId },
+      relations: ['roles', 'roles.permissions'],
+    });
+  }
 }

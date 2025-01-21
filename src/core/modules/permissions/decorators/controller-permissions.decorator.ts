@@ -1,9 +1,6 @@
-import { applyDecorators, SetMetadata, UseGuards } from "@nestjs/common";
-import { ControllerPermissionsOptionType } from "src/base/interfaces/base-controller-permissions.interface";
+import { applyDecorators, SetMetadata } from '@nestjs/common';
+import { ControllerPermissionsOptionType } from 'src/base/interfaces/base-controller-permissions.interface';
 
 export const ControllerPermissions = (
   permissions: ControllerPermissionsOptionType,
-) =>
-  applyDecorators(
-    SetMetadata('permissions', permissions),
-  );
+) => applyDecorators(SetMetadata('permissions', permissions));
