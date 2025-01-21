@@ -65,7 +65,7 @@ $ npm run seed
 
 - [x] password confirmation validation (register dto)
 - [ ] sending code with mail (mail service)
-- [ ] verifying code when register 
+- [ ] verifying code when register
 - [ ] reset password code
 - [ ] postgres type orm error codes
 - [x] is existed custom validator
@@ -74,7 +74,7 @@ $ npm run seed
 - [ ] even if I am throwing an exception, i got the return apiResponse message
 - [ ] permission assign dto
 - [x] permissions controller and service
-- [x] generic seeder 
+- [x] generic seeder
 - [x] seeding script
 - [x] seeding command
 - [x] add admin user seeder
@@ -106,7 +106,7 @@ $ npm run seed
 - [ ] login using facebook
 - [ ] filtering data dto, pass it in the findAll method (use it in the query builder)
 - [ ] make apiResponse a method to return a response in the base controller
-- [ ] add the status code as a param in the apiResponse method in the base controller (default is 200) 
+- [ ] add the status code as a param in the apiResponse method in the base controller (default is 200)
 - [ ] separate returning response logic into two different methods, one for the success and another for the fail
 - [x] apply permissions in a generic way into the base controller so all controller has the permissions decorator by default
 - [x] add permissions file into roles and users module

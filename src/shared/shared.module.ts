@@ -1,6 +1,6 @@
 // src/shared/shared.module.ts
-import { Global, Module } from "@nestjs/common";
-import { OwnershipCheckService } from "src/shared/utils/ownership-check.util";
+import { Global, Module } from '@nestjs/common';
+import { OwnershipCheckService } from 'src/shared/utils/ownership-check.util';
 
 @Global()
 @Module({

@@ -19,7 +19,7 @@ import { SharedModule } from './shared/shared.module';
 
 @Module({
   imports: [
-    PostsModule, 
+    PostsModule,
     ConfigModule.forRoot({
       // Validation for .env variables
       validationSchema: Joi.object({
@@ -33,12 +33,12 @@ import { SharedModule } from './shared/shared.module';
         JWT_EXPIRATION_TIME: Joi.string().required(),
       }),
       isGlobal: true,
-      envFilePath: '.env'
-    }), 
-    DatabaseModule, 
-    UsersModule, 
-    AuthModule, 
-    CategoriesModule, 
+      envFilePath: '.env',
+    }),
+    DatabaseModule,
+    UsersModule,
+    AuthModule,
+    CategoriesModule,
     PermissionsModule,
     SeederModule,
     RolesModule,
@@ -53,14 +53,10 @@ import { SharedModule } from './shared/shared.module';
     AppService,
     IsExistedConstraint,
   ],
-  exports: [
-    IsExistedConstraint,
-  ]
+  exports: [IsExistedConstraint],
 })
 export class AppModule implements NestModule {
   configure(consumer: MiddlewareConsumer) {
-    consumer
-      .apply(LoggerMiddleware)
-      .forRoutes('*');
+    consumer.apply(LoggerMiddleware).forRoutes('*');
   }
 }

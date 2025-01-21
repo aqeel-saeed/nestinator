@@ -1,13 +1,10 @@
-import { permissionType } from "src/shared/enums/permissions.enum";
+import { permissionType } from 'src/shared/enums/permissions.enum';
 
 export type ControllerPermissionsOptionType = Record<
-    string,
-    permissionType |
-    permissionType[] |
-    undefined |
-    null
+  string,
+  permissionType | permissionType[] | undefined | null
 >;
 
 export interface ControllerBooleanPermissionsOptions {
-    [methodName: string]: boolean;
+  [methodName: string]: boolean;
 }

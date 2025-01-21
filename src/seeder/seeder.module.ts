@@ -14,22 +14,9 @@ import { AdminUserSeeder } from './seeders/admin-user.seeder';
 @Module({
   imports: [
     DatabaseModule,
-    TypeOrmModule.forFeature([
-      Permission,
-      Role,
-      User,
-      Address,
-      Post,
-      Category
-    ])
+    TypeOrmModule.forFeature([Permission, Role, User, Address, Post, Category]),
   ],
-  providers: [
-    SeederService,
-    PermissionSeeder,
-    AdminUserSeeder,
-  ],
-  exports: [
-    SeederService
-  ]
+  providers: [SeederService, PermissionSeeder, AdminUserSeeder],
+  exports: [SeederService],
 })
 export class SeederModule {}

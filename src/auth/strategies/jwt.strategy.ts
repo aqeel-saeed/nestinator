@@ -8,7 +8,7 @@ import { UsersService } from 'src/core/modules/users/users.service';
 export class JwtStrategy extends PassportStrategy(Strategy) {
   constructor(
     private readonly configService: ConfigService,
-    private readonly usersService: UsersService
+    private readonly usersService: UsersService,
   ) {
     super({
       usernameField: 'email',
@@ -28,8 +28,9 @@ export class JwtStrategy extends PassportStrategy(Strategy) {
 
     const permissions = user.roles
       .flatMap((role) => role.permissions)
-      .filter((permission, index, self) =>
-        index === self.findIndex((p) => p.key === permission.key),
+      .filter(
+        (permission, index, self) =>
+          index === self.findIndex((p) => p.key === permission.key),
       );
 
     return {
