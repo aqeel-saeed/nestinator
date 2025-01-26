@@ -9,7 +9,7 @@
     "typescript.preferences.importModuleSpecifier": "relative",
     "editor.formatOnSave": true,
     "cSpell.words": [
-        "nesntinator",
         "aqeel",
+        "nestinator",
     ]
 }
