@@ -27,7 +27,7 @@ export function setupSwagger(app: INestApplication) {
   const document = SwaggerModule.createDocument(
     app,
     config,
-    /* add options variable here when enable swagger only for certian modules */
+    /* add options variable here when enable swagger only for certain modules */
     // options
   );
   SwaggerModule.setup('api-docs', app, document);
