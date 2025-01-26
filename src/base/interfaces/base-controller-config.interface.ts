@@ -8,7 +8,7 @@ export interface BaseControllerConfig {
   // TypeORM entity class name, and it should starts with capital letter, to be used in naming module elements like controller, service and so on
   entityClassName: string;
 
-  // to be used in reponse messages and logs
+  // to be used in response messages and logs
   entitySingleName: string;
   entityPluralName: string;
 
