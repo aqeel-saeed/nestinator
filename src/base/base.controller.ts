@@ -45,7 +45,8 @@ export function baseControllerFactory<T, CreateDto, UpdateDto>(
     @ApiBody({ type: CreateDtoClass })
     @UseAuthAndPermissionsIf(authConditions.create)
     @Post()
-    async create(@Body() data: CreateDto, @Req() req) {
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
+    async create(@Body() data: CreateDto, @Req() _req) {
       const res = await this.service.create(data as DeepPartial<T>);
       return apiResponse(
         res,
@@ -60,7 +61,8 @@ export function baseControllerFactory<T, CreateDto, UpdateDto>(
     async update(
       @Param() { id }: FindOneParams,
       @Body() data: UpdateDto,
-      @Req() req,
+      // eslint-disable-next-line @typescript-eslint/no-unused-vars
+      @Req() _req,
     ) {
       const res = await this.service.update(+id, data as DeepPartial<T>);
       return apiResponse(
