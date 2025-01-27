@@ -52,7 +52,7 @@ export class BaseService<T> {
                 });
               if (relatedEntities.length !== resolvedItem[relationId].length) {
                 throw new NotFoundException(
-                  `${relation.propertyName} not all entities found.`,
+                  `not all ${relation.propertyName} entities found.`,
                 );
               }
               resolvedItem[relation.propertyName] = relatedEntities;
