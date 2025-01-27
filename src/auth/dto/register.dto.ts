@@ -38,7 +38,7 @@ export class RegisterDto {
   password: string;
 
   @ApiProperty({
-    description: 'same with the password to cofirm it',
+    description: 'same with the password to confirm it',
     example: 'Admin123!',
     required: true,
   })
