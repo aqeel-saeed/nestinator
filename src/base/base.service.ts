@@ -1,4 +1,4 @@
-import { DeepPartial, In, Repository } from 'typeorm';
+import { DeepPartial, In } from 'typeorm';
 import { BaseRepository } from './base.repository';
 import { NotFoundException } from '@nestjs/common';
 
@@ -9,7 +9,7 @@ export class BaseService<T> {
     data: DeepPartial<T> | DeepPartial<T>[],
   ): Promise<any | any[]> {
     const isArray = Array.isArray(data);
-    // warpping single data into an array for processing
+    // wrapping single data into an array for processing
     const items = isArray ? data : [data];
     const resolvedItems = await Promise.all(
       items.map(async (item) => {
