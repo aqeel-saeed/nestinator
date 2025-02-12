@@ -16,6 +16,7 @@ import { CategoriesModule } from './modules/categories/categories.module';
 import { PermissionsModule } from './core/permissions/permissions.module';
 import { RolesModule } from './modules/roles/roles.module';
 import { ExceptionsLoggerFilter } from './shared/filters/exceptions-logger.filter';
+import { MailModule } from './core/mail/mail.module';
 
 @Module({
   imports: [
@@ -44,6 +45,7 @@ import { ExceptionsLoggerFilter } from './shared/filters/exceptions-logger.filte
     SeederModule,
     RolesModule,
     SharedModule,
+    MailModule,
   ],
   controllers: [AppController],
   providers: [
