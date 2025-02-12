@@ -4,12 +4,12 @@ import { UpdatePostDto } from './dto/update-post.dto';
 import { PostsService } from './posts.service';
 import { apiResponse } from 'src/shared/utils/utils';
 import { Post as PostEntity } from './entities/post.entity';
-import { ControllerPermissions } from '../permissions/decorators/controller-permissions.decorator';
 import { baseControllerFactory } from 'src/base/base.controller';
 import { UseAuthAndPermissionsIf } from 'src/shared/decorators/conditional-auth.decorator';
 import { postsControllerPermissions } from './permissions/posts-controller-permissions';
 import { postsControllerConfig } from './posts.config';
-import { ControllerConfig } from '../../../base/decorators/controller-config.decorator';
+import { ControllerPermissions } from '../../core/permissions/decorators/controller-permissions.decorator';
+import { ControllerConfig } from '../../base/decorators/controller-config.decorator';
 
 const BaseController = baseControllerFactory<
   PostEntity,

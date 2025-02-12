@@ -1,8 +1,8 @@
-import { PostPermissionsEnum } from '../posts/permissions/posts-permissions.enum';
-import { CategoryPermissionsEnum } from '../categories/permissions/categories-permissions.enum';
+import { CategoryPermissionsEnum } from '../../modules/categories/permissions/categories-permissions.enum';
+import { PostPermissionsEnum } from '../../modules/posts/permissions/posts-permissions.enum';
+import { RolePermissionsEnum } from '../../modules/roles/permissions/roles-permissions.enum';
+import { UserPermissionsEnum } from '../../modules/users/permissions/users-permissions.enum';
 import { Permission } from './entities/permission.entity';
-import { UserPermissionsEnum } from '../users/permissions/users-permissions.enum';
-import { RolePermissionsEnum } from '../roles/permissions/roles-permissions.enum';
 import { PermissionPermissionsEnum } from './permissions/permissions-permissions.enum';
 
 export const permissions: Permission[] = [

@@ -2,14 +2,14 @@ import { Module } from '@nestjs/common';
 import { SeederService } from './seeder.service';
 import { PermissionSeeder } from './seeders/permission.seeder';
 import { TypeOrmModule } from '@nestjs/typeorm';
-import { Permission } from '../core/modules/permissions/entities/permission.entity';
 import { DatabaseModule } from '../core/configurations/database/database.module';
-import { Role } from '../core/modules/roles/entities/role.entity';
-import { User } from '../core/modules/users/entities/user.entity';
-import { Address } from '../core/modules/users/entities/address.entity';
-import { Post } from '../core/modules/posts/entities/post.entity';
-import { Category } from '../core/modules/categories/entities/category.entity';
 import { AdminUserSeeder } from './seeders/admin-user.seeder';
+import { Permission } from '../core/permissions/entities/permission.entity';
+import { Role } from '../modules/roles/entities/role.entity';
+import { User } from '../modules/users/entities/user.entity';
+import { Address } from '../modules/users/entities/address.entity';
+import { Category } from '../modules/categories/entities/category.entity';
+import { Post } from '../modules/posts/entities/post.entity';
 
 @Module({
   imports: [

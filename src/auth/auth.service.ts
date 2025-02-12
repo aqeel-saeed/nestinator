@@ -1,12 +1,12 @@
 import { HttpException, HttpStatus, Injectable } from '@nestjs/common';
-import { UsersService } from 'src/core/modules/users/users.service';
 import { RegisterDto } from './dto/register.dto';
 import * as bcrypt from 'bcrypt';
 import { PostgresErrorCode } from 'src/core/configurations/database/postgres-error-code.enum';
 import { JwtService } from '@nestjs/jwt';
 import { TokenPayload } from './token-payload.interface';
-import { User } from 'src/core/modules/users/entities/user.entity';
 import { LoginDto } from './dto/login.dto';
+import { UsersService } from '../modules/users/users.service';
+import { User } from '../modules/users/entities/user.entity';
 
 @Injectable()
 export class AuthService {
@@ -20,6 +20,7 @@ export class AuthService {
       const user = await this.usersService.getByEmail(email);
       await this.verifyPassword(plainTextPassword, user.password);
       return user;
+      // eslint-disable-next-line @typescript-eslint/no-unused-vars
     } catch (error) {
       throw new HttpException(
         'Wrong credentials provided1',

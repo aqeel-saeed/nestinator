@@ -3,11 +3,11 @@ import { CreateRoleDto } from './dto/create-role.dto';
 import { UpdateRoleDto } from './dto/update-role.dto';
 import { RolesService } from './roles.service';
 import { Role } from './entities/role.entity';
-import { ControllerPermissions } from '../permissions/decorators/controller-permissions.decorator';
 import { baseControllerFactory } from 'src/base/base.controller';
 import { rolesControllerPermissions } from './permissions/roles-controller-permissions';
 import { rolesControllerConfig } from './roles.config';
 import { ControllerConfig } from 'src/base/decorators/controller-config.decorator';
+import { ControllerPermissions } from '../../core/permissions/decorators/controller-permissions.decorator';
 
 const BaseController = baseControllerFactory<
   Role,

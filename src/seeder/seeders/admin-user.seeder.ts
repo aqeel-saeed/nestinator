@@ -2,8 +2,8 @@ import { Injectable } from '@nestjs/common';
 import { BaseSeeder } from './base-seeder.seeder';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
-import { User } from '../../core/modules/users/entities/user.entity';
 import * as bcrypt from 'bcrypt';
+import { User } from '../../modules/users/entities/user.entity';
 
 @Injectable()
 export class AdminUserSeeder extends BaseSeeder<User> {

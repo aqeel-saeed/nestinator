@@ -1,6 +1,6 @@
-import { PermissionsEnum } from '../../../../shared/enums/permissions.enum';
 import { Column, Entity, ManyToMany, PrimaryGeneratedColumn } from 'typeorm';
-import { Role } from '../../roles/entities/role.entity';
+import { PermissionsEnum } from '../../../shared/enums/permissions.enum';
+import { Role } from '../../../modules/roles/entities/role.entity';
 
 @Entity('permissions')
 export class Permission {
