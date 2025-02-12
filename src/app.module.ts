@@ -2,20 +2,20 @@ import { MiddlewareConsumer, Module, NestModule } from '@nestjs/common';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { LoggerMiddleware } from './core/middlewares/logger.middleware';
-import { PostsModule } from './core/modules/posts/posts.module';
 import { ConfigModule } from '@nestjs/config';
 import { DatabaseModule } from './core/configurations/database/database.module';
-import { UsersModule } from './core/modules/users/users.module';
 import { AuthModule } from './auth/auth.module';
 import * as Joi from '@hapi/joi';
 import { APP_FILTER } from '@nestjs/core';
-import { ExceptionsLoggerFilter } from './shared/utils/exceptions-logger.filter';
-import { CategoriesModule } from './core/modules/categories/categories.module';
 import { IsExistedConstraint } from './shared/validators/is-existed.validator';
-import { PermissionsModule } from './core/modules/permissions/permissions.module';
 import { SeederModule } from './seeder/seeder.module';
-import { RolesModule } from './core/modules/roles/roles.module';
 import { SharedModule } from './shared/shared.module';
+import { PostsModule } from './modules/posts/posts.module';
+import { UsersModule } from './modules/users/users.module';
+import { CategoriesModule } from './modules/categories/categories.module';
+import { PermissionsModule } from './core/permissions/permissions.module';
+import { RolesModule } from './modules/roles/roles.module';
+import { ExceptionsLoggerFilter } from './shared/filters/exceptions-logger.filter';
 
 @Module({
   imports: [
