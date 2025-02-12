@@ -1,28 +1,16 @@
+<p align="center" style="font-size: 100px; font-family: mono">Nestinator</p>
+
 <p align="center">
-  <a href="http://nestjs.com/" target="blank"><img src="https://nestjs.com/img/logo-small.svg" width="120" alt="Nest Logo" /></a>
+<?xml version="1.0" encoding="UTF-8"?>
+<svg version="1.1" viewBox="0 0 1160 1092" width="290" height="273" xmlns="http://www.w3.org/2000/svg">
+<path transform="translate(0)" d="m0 0h1160v1092h-1160z"/>
+<path transform="translate(377,328)" d="m0 0 4 1 25 16 18 12 57 37 60 39 32 21 17 11 20 13 26 17 29 19 22 14 27 18 16 10 11 7 13 9 1 4-1 140-5-2-11-8-19-12-55-36-17-11-32-21-17-11-20-13-25-16-18-12-17-11-23-15-17-11-23-15-17-11-23-15-22-14-12-8-4-4z" fill="#ffffff"/>
+<path transform="translate(378,525)" d="m0 0 9 6 44 30 13 9 25 17 17 12 11 11 6 9 5 13 2 11v14l-4 16-7 14-10 12-11 8-12 6-12 3h-22l-16-5-13-8-11-10-7-11-5-11-2-7-1-8v-46z" fill="#ffffff"/>
+<path transform="translate(682,327)" d="m0 0h11l16 3 16 8 10 8 8 9 8 16 3 10v137l-5-2-18-13-12-8-19-13-32-22-12-8-12-9-10-10-6-10-5-15-1-6v-16l4-17 6-11 7-9 8-8 13-8 11-4z" fill="#ffffff"/>
+</svg>
+
 </p>
 
-[circleci-image]: https://img.shields.io/circleci/build/github/nestjs/nest/master?token=abc123def456
-[circleci-url]: https://circleci.com/gh/nestjs/nest
-
-  <p align="center">A progressive <a href="http://nodejs.org" target="_blank">Node.js</a> framework for building efficient and scalable server-side applications.</p>
-    <p align="center">
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/v/@nestjs/core.svg" alt="NPM Version" /></a>
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/l/@nestjs/core.svg" alt="Package License" /></a>
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/dm/@nestjs/common.svg" alt="NPM Downloads" /></a>
-<a href="https://circleci.com/gh/nestjs/nest" target="_blank"><img src="https://img.shields.io/circleci/build/github/nestjs/nest/master" alt="CircleCI" /></a>
-<a href="https://coveralls.io/github/nestjs/nest?branch=master" target="_blank"><img src="https://coveralls.io/repos/github/nestjs/nest/badge.svg?branch=master#9" alt="Coverage" /></a>
-<a href="https://discord.gg/G7Qnnhy" target="_blank"><img src="https://img.shields.io/badge/discord-online-brightgreen.svg" alt="Discord"/></a>
-<a href="https://opencollective.com/nest#backer" target="_blank"><img src="https://opencollective.com/nest/backers/badge.svg" alt="Backers on Open Collective" /></a>
-<a href="https://opencollective.com/nest#sponsor" target="_blank"><img src="https://opencollective.com/nest/sponsors/badge.svg" alt="Sponsors on Open Collective" /></a>
-  <a href="https://paypal.me/kamilmysliwiec" target="_blank"><img src="https://img.shields.io/badge/Donate-PayPal-ff3f59.svg" alt="Donate us"/></a>
-    <a href="https://opencollective.com/nest#sponsor"  target="_blank"><img src="https://img.shields.io/badge/Support%20us-Open%20Collective-41B883.svg" alt="Support us"></a>
-  <a href="https://twitter.com/nestframework" target="_blank"><img src="https://img.shields.io/twitter/follow/nestframework.svg?style=social&label=Follow" alt="Follow us on Twitter"></a>
-</p>
-  <!--[![Backers on Open Collective](https://opencollective.com/nest/backers/badge.svg)](https://opencollective.com/nest#backer)
-  [![Sponsors on Open Collective](https://opencollective.com/nest/sponsors/badge.svg)](https://opencollective.com/nest#sponsor)-->
-
-# Nestinator
 
 ## Description
 
