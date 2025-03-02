@@ -12,6 +12,8 @@ import { LoginDto } from './dto/login.dto';
 import { ApiBearerAuth, ApiTags } from '@nestjs/swagger';
 import { JwtAuthGuard } from './guards/jwt-auth.guard';
 import { apiResponse } from 'src/shared/utils/utils';
+import { VerifyUserDto } from './dto/verify-user.dto';
+import { ResendVerificationDto } from './dto/resend-verification-code.dto';
 
 @ApiTags('Auth')
 @Controller('auth')
@@ -38,5 +40,18 @@ export class AuthController {
   async profile(@Request() req) {
     const reqUser = req.user;
     return apiResponse(reqUser, 'User profile retrieved successfully.');
+  }
+
+  @Post('verify')
+  async verifyUser(@Body() verifyUserDto: VerifyUserDto) {
+    return this.authService.verifyUser(verifyUserDto.email, verifyUserDto.code);
+  }
+
+  @Post('resend-verification')
+  async resendVerification(
+    @Body() resendVerificationDto: ResendVerificationDto,
+  ) {
+    await this.authService.sendVerificationCode(resendVerificationDto.email);
+    return apiResponse(null, 'Code sent successfully');
   }
 }

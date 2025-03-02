@@ -23,6 +23,7 @@ export class AdminUserSeeder extends BaseSeeder<User> {
         email: 'admin@admin.com',
         name: 'admin',
         password: hashedPassword,
+        isVerified: true,
       },
     ];
 

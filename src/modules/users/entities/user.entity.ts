@@ -27,6 +27,12 @@ export class User {
   @Exclude()
   public password: string;
 
+  @Column({ nullable: true })
+  public verificationCode?: string;
+
+  @Column({ default: false })
+  public isVerified: boolean;
+
   @OneToOne(() => Address, {
     eager: true,
     cascade: true,

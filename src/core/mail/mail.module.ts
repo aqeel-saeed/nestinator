@@ -13,6 +13,7 @@ import { ConfigModule } from '@nestjs/config';
     },
     NodeMailerAdapter,
   ],
+  exports: [MailService],
 })
 export class MailModule {}
 

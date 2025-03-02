@@ -1,4 +1,10 @@
-import { HttpException, HttpStatus, Injectable } from '@nestjs/common';
+import {
+  BadRequestException,
+  HttpException,
+  HttpStatus,
+  Injectable,
+  NotFoundException,
+} from '@nestjs/common';
 import { RegisterDto } from './dto/register.dto';
 import * as bcrypt from 'bcrypt';
 import { PostgresErrorCode } from 'src/core/configurations/database/postgres-error-code.enum';
@@ -7,12 +13,16 @@ import { TokenPayload } from './token-payload.interface';
 import { LoginDto } from './dto/login.dto';
 import { UsersService } from '../modules/users/users.service';
 import { User } from '../modules/users/entities/user.entity';
+import { generateRandomCode } from '../shared/utils/utils';
+import { MailService } from '../core/mail/mail.service';
+import { VerificationMailDto } from '../core/mail/templates/verification-code.mail-template';
 
 @Injectable()
 export class AuthService {
   constructor(
     private readonly usersService: UsersService,
     private readonly jwtService: JwtService,
+    private readonly mailService: MailService,
   ) {}
 
   public async validateUser(email: string, plainTextPassword: string) {
@@ -68,7 +78,10 @@ export class AuthService {
         ...registerData,
         password: hashedPassword,
       })) as User;
-      return this.makeToken(createdUser);
+
+      await this.sendVerificationCode(createdUser.email);
+
+      return { message: 'Verification code sent to your email' };
     } catch (error) {
       if (error?.code === PostgresErrorCode.UniqueViolation) {
         throw new HttpException(
@@ -81,5 +94,35 @@ export class AuthService {
         HttpStatus.INTERNAL_SERVER_ERROR,
       );
     }
+  }
+
+  async verifyUser(email: string, code: string) {
+    const user = await this.usersService.getByEmail(email);
+    if (!user) throw new NotFoundException('User not found');
+
+    if (user.verificationCode !== code)
+      throw new BadRequestException('Invalid verification code');
+
+    await this.usersService.update(user.id, {
+      isVerified: true,
+      verificationCode: null,
+    });
+
+    return { message: 'User verified successfully' };
+  }
+
+  async sendVerificationCode(email: string) {
+    const user = await this.usersService.getByEmail(email);
+    if (!user) {
+      throw new NotFoundException('User not found');
+    }
+
+    const verificationCode = generateRandomCode(4);
+    await this.usersService.update(user.id, { verificationCode });
+
+    const mailData = new VerificationMailDto(user.email, verificationCode);
+    this.mailService.sendMail(mailData);
+
+    console.log(`Verification code for ${user.email}: ${verificationCode}`);
   }
 }
