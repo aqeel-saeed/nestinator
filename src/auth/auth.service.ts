@@ -23,7 +23,7 @@ export class AuthService {
       // eslint-disable-next-line @typescript-eslint/no-unused-vars
     } catch (error) {
       throw new HttpException(
-        'Wrong credentials provided1',
+        'Wrong credentials provided',
         HttpStatus.BAD_REQUEST,
       );
     }
@@ -39,7 +39,7 @@ export class AuthService {
     );
     if (!isPasswordMatching) {
       throw new HttpException(
-        'Wrong credentials provided2',
+        'Wrong credentials provided',
         HttpStatus.BAD_REQUEST,
       );
     }
@@ -56,7 +56,7 @@ export class AuthService {
       userId: user.id,
     };
     return {
-      access_token: await this.jwtService.sign(payload),
+      access_token: this.jwtService.sign(payload),
       user: user,
     };
   }
