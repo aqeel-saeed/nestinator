@@ -11,27 +11,28 @@ import { RegisterDto } from './dto/register.dto';
 import { LoginDto } from './dto/login.dto';
 import { ApiBearerAuth, ApiTags } from '@nestjs/swagger';
 import { JwtAuthGuard } from './guards/jwt-auth.guard';
-import { apiResponse } from 'src/shared/utils/utils';
 import { VerifyUserDto } from './dto/verify-user.dto';
 import { ResendVerificationDto } from './dto/resend-verification-code.dto';
+import { BaseController } from '../base/base.controller';
 
 @ApiTags('Auth')
 @Controller('auth')
-export class AuthController {
-  constructor(private readonly authService: AuthService) {}
+export class AuthController extends BaseController {
+  constructor(private readonly authService: AuthService) {
+    super();
+  }
 
   @Post('register')
   async register(@Body() registrationData: RegisterDto) {
     const res = await this.authService.register(registrationData);
-    return apiResponse(res, 'signed up successfully.');
+    return this.successResponse('signed up successfully.', res);
   }
 
   @Post('login')
   async login(@Body() loginData: LoginDto) {
     const res = await this.authService.login(loginData);
-    console.log('result is:', res);
 
-    return apiResponse(res, 'Logged in successfully.');
+    return this.successResponse('Logged in successfully.', res);
   }
 
   @ApiBearerAuth('Authorization')
@@ -39,7 +40,10 @@ export class AuthController {
   @Get('profile')
   async profile(@Request() req) {
     const reqUser = req.user;
-    return apiResponse(reqUser, 'User profile retrieved successfully.');
+    return this.successResponse(
+      'User profile retrieved successfully.',
+      reqUser,
+    );
   }
 
   @Post('verify')
@@ -52,6 +56,6 @@ export class AuthController {
     @Body() resendVerificationDto: ResendVerificationDto,
   ) {
     await this.authService.sendVerificationCode(resendVerificationDto.email);
-    return apiResponse(null, 'Code sent successfully');
+    return this.successResponse('Code sent successfully');
   }
 }
