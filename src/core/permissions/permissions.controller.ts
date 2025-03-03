@@ -5,7 +5,6 @@ import { Controller } from '@nestjs/common';
 import { ControllerPermissions } from './decorators/controller-permissions.decorator';
 import { permissionsControllerPermissions } from './permissions/permissions-controller-permissions';
 import { PermissionsService } from './permissions.service';
-import { apiResponse } from 'src/shared/utils/utils';
 import { ControllerConfig } from 'src/base/decorators/controller-config.decorator';
 
 const BaseController = BaseCrudController<Permission, undefined, undefined>(
@@ -22,15 +21,33 @@ export class PermissionsController extends BaseController {
     super(permissionsService);
   }
 
-  async create(): Promise<{ data: any; message: string }> {
-    return apiResponse(null, 'Create method not supported in this controller.');
+  async create(): Promise<{
+    success: boolean;
+    data: Permission;
+    message: string;
+  }> {
+    return this.successResponse(
+      'Create method not supported in this controller.',
+    );
   }
 
-  async update(): Promise<{ data: any; message: string }> {
-    return apiResponse(null, 'Update method not supported in this controller.');
+  async update(): Promise<{
+    success: boolean;
+    data: Permission;
+    message: string;
+  }> {
+    return this.successResponse(
+      'Update method not supported in this controller.',
+    );
   }
 
-  async delete(): Promise<{ data: any; message: string }> {
-    return apiResponse(null, 'Delete method not supported in this controller.');
+  async delete(): Promise<{
+    success: boolean;
+    data: Permission;
+    message: string;
+  }> {
+    return this.successResponse(
+      'Delete method not supported in this controller.',
+    );
   }
 }

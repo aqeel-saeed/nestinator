@@ -27,8 +27,8 @@ export function BaseCrudController<T, CreateDto, UpdateDto>(
     async findAll() {
       const res = await this.service.findAll();
       return this.successResponse(
-        res,
         `${moduleConfig.entityPluralName} retrieved successfully.`,
+        res,
       );
     }
 
@@ -38,8 +38,8 @@ export function BaseCrudController<T, CreateDto, UpdateDto>(
     async findById(@Param() { id }: FindOneParams) {
       const res = await this.service.findById(+id);
       return this.successResponse(
-        res,
         `${moduleConfig.entitySingleName} retrieved successfully.`,
+        res,
       );
     }
 
@@ -50,8 +50,8 @@ export function BaseCrudController<T, CreateDto, UpdateDto>(
     async create(@Body() data: CreateDto, @Req() _req) {
       const res = await this.service.create(data as DeepPartial<T>);
       return this.successResponse(
-        res,
         `${moduleConfig.entitySingleName} created successfully.`,
+        res,
       );
     }
 
@@ -67,8 +67,8 @@ export function BaseCrudController<T, CreateDto, UpdateDto>(
     ) {
       const res = await this.service.update(+id, data as DeepPartial<T>);
       return this.successResponse(
-        res,
         `${moduleConfig.entitySingleName} updated successfully.`,
+        res,
       );
     }
 
@@ -78,7 +78,6 @@ export function BaseCrudController<T, CreateDto, UpdateDto>(
     async delete(@Param() { id }: FindOneParams) {
       await this.service.delete(+id);
       return this.successResponse(
-        null,
         `${moduleConfig.entitySingleName} deleted successfully.`,
       );
     }

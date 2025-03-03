@@ -1,14 +1,16 @@
 import { Controller, Get } from '@nestjs/common';
 import { AppService } from './app.service';
-import { apiResponse } from './shared/utils/utils';
+import { BaseController } from './base/base.controller';
 
 @Controller()
-export class AppController {
-  constructor(private readonly appService: AppService) {}
+export class AppController extends BaseController {
+  constructor(private readonly appService: AppService) {
+    super();
+  }
 
   @Get()
   getHello() {
     const res = this.appService.getHello();
-    return apiResponse(res);
+    return this.successResponse(res);
   }
 }

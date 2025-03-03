@@ -1,15 +1,18 @@
 import { HttpException, HttpStatus } from '@nestjs/common';
 
 export abstract class BaseController {
-  successResponse<T>(data: T, message: string) {
+  successResponse<T>(message: string = '', data?: T) {
     return {
       success: true,
       message,
-      data,
+      ...(data !== undefined && { data }), // Only add `data` if it's provided
     };
   }
 
-  errorResponse(message: string, status: HttpStatus = HttpStatus.BAD_REQUEST) {
+  errorResponse(
+    message: string = '',
+    status: HttpStatus = HttpStatus.BAD_REQUEST,
+  ) {
     throw new HttpException(
       {
         success: false,

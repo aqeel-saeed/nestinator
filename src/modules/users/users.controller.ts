@@ -7,7 +7,6 @@ import { BaseCrudController } from 'src/base/base-crud.controller';
 import { usersControllerPermissions } from './permissions/users-controller-permissions';
 import { usersControllerConfig } from './users.config';
 import { UseAuthAndPermissionsIf } from 'src/shared/decorators/conditional-auth.decorator';
-import { apiResponse } from 'src/shared/utils/utils';
 import * as bcrypt from 'bcrypt';
 import { ControllerConfig } from 'src/base/decorators/controller-config.decorator';
 import { ControllerPermissions } from '../../core/permissions/decorators/controller-permissions.decorator';
@@ -36,9 +35,9 @@ export class UsersController extends BaseController {
     user['password'] = hashedPassword;
 
     const res = await this.service.create(user);
-    return apiResponse(
-      res,
+    return this.successResponse(
       `${usersControllerConfig.entitySingleName} created successfully.`,
+      res,
     );
   }
 }

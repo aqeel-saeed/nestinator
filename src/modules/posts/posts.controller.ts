@@ -2,7 +2,6 @@ import { Body, Controller, Post, Req } from '@nestjs/common';
 import { CreatePostDto } from './dto/create-post.dto';
 import { UpdatePostDto } from './dto/update-post.dto';
 import { PostsService } from './posts.service';
-import { apiResponse } from 'src/shared/utils/utils';
 import { Post as PostEntity } from './entities/post.entity';
 import { BaseCrudController } from 'src/base/base-crud.controller';
 import { UseAuthAndPermissionsIf } from 'src/shared/decorators/conditional-auth.decorator';
@@ -32,9 +31,9 @@ export class PostsController extends BaseController {
   async create(@Body() post: CreatePostDto, @Req() req) {
     post['authorId'] = req.user.userId;
     const res = await this.service.create(post);
-    return apiResponse(
-      res,
+    return this.successResponse(
       `${postsControllerConfig.entitySingleName} created successfully.`,
+      res,
     );
   }
 }
