@@ -11,7 +11,6 @@
 
 </p>
 
-
 ## Description
 
 [Nest](https://github.com/nestjs/nest) framework TypeScript core project, working as an Incubator for the nest of your project, to be lunched soon as a package to start your project with high level helpers and pre-installed packeges and utils and modules to help your start rapidly.
@@ -52,8 +51,8 @@ $ npm run seed
 ## TODO List
 
 - [x] password confirmation validation (register dto)
-- [ ] sending code with mail (mail service)
-- [ ] verifying code when register
+- [x] sending code with mail (mail service)
+- [x] verifying code when register
 - [ ] reset password code
 - [ ] postgres type orm error codes
 - [x] is existed custom validator
