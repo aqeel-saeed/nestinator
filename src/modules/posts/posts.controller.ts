@@ -4,14 +4,14 @@ import { UpdatePostDto } from './dto/update-post.dto';
 import { PostsService } from './posts.service';
 import { apiResponse } from 'src/shared/utils/utils';
 import { Post as PostEntity } from './entities/post.entity';
-import { baseControllerFactory } from 'src/base/base.controller';
+import { BaseCrudController } from 'src/base/base-crud.controller';
 import { UseAuthAndPermissionsIf } from 'src/shared/decorators/conditional-auth.decorator';
 import { postsControllerPermissions } from './permissions/posts-controller-permissions';
 import { postsControllerConfig } from './posts.config';
 import { ControllerPermissions } from '../../core/permissions/decorators/controller-permissions.decorator';
 import { ControllerConfig } from '../../base/decorators/controller-config.decorator';
 
-const BaseController = baseControllerFactory<
+const BaseController = BaseCrudController<
   PostEntity,
   CreatePostDto,
   UpdatePostDto

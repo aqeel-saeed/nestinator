@@ -1,7 +1,7 @@
 import { BaseControllerAuthOptions } from './base-controller-auth-options.interface';
 
-export interface BaseControllerConfig {
-  // should be the name of the entity in prulal and small letter
+export interface BaseCrudControllerConfig {
+  // should be the name of the entity in plural and small letter
   // please do not change this while it is auto generated
   endpointName: string;
 

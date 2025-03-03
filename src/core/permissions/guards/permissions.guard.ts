@@ -6,7 +6,7 @@ import {
 } from '@nestjs/common';
 import { Reflector } from '@nestjs/core';
 import { OwnershipCheckService } from 'src/shared/utils/ownership-check.util';
-import { BaseControllerConfig } from 'src/base/interfaces/base-controller-config.interface';
+import { BaseCrudControllerConfig } from 'src/base/interfaces/base-controller-config.interface';
 import { ControllerPermissionsOptionType } from 'src/base/interfaces/base-controller-permissions.interface';
 
 @Injectable()
@@ -18,7 +18,7 @@ export class PermissionsGuard implements CanActivate {
 
   async canActivate(context: ExecutionContext) {
     // get controller config
-    const config = this.reflector.get<BaseControllerConfig>(
+    const config = this.reflector.get<BaseCrudControllerConfig>(
       'config',
       context.getClass(),
     );

@@ -3,7 +3,7 @@ import { CreateUserDto } from './dto/create-user.dto';
 import { UpdateUserDto } from './dto/update-user.dto';
 import { UsersService } from './users.service';
 import { User } from './entities/user.entity';
-import { baseControllerFactory } from 'src/base/base.controller';
+import { BaseCrudController } from 'src/base/base-crud.controller';
 import { usersControllerPermissions } from './permissions/users-controller-permissions';
 import { usersControllerConfig } from './users.config';
 import { UseAuthAndPermissionsIf } from 'src/shared/decorators/conditional-auth.decorator';
@@ -12,11 +12,11 @@ import * as bcrypt from 'bcrypt';
 import { ControllerConfig } from 'src/base/decorators/controller-config.decorator';
 import { ControllerPermissions } from '../../core/permissions/decorators/controller-permissions.decorator';
 
-const BaseController = baseControllerFactory<
-  User,
+const BaseController = BaseCrudController<User, CreateUserDto, UpdateUserDto>(
+  usersControllerConfig,
   CreateUserDto,
-  UpdateUserDto
->(usersControllerConfig, CreateUserDto, UpdateUserDto);
+  UpdateUserDto,
+);
 
 @Controller(usersControllerConfig.endpointName)
 @ControllerPermissions(usersControllerPermissions)

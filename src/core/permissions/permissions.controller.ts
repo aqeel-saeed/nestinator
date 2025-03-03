@@ -1,4 +1,4 @@
-import { baseControllerFactory } from 'src/base/base.controller';
+import { BaseCrudController } from 'src/base/base-crud.controller';
 import { Permission } from './entities/permission.entity';
 import { permissionsControllerConfig } from './permissions.config';
 import { Controller } from '@nestjs/common';
@@ -8,7 +8,7 @@ import { PermissionsService } from './permissions.service';
 import { apiResponse } from 'src/shared/utils/utils';
 import { ControllerConfig } from 'src/base/decorators/controller-config.decorator';
 
-const BaseController = baseControllerFactory<Permission, undefined, undefined>(
+const BaseController = BaseCrudController<Permission, undefined, undefined>(
   permissionsControllerConfig,
   undefined,
   undefined,
