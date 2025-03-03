@@ -92,8 +92,8 @@ $ npm run seed
 - [ ] login using gmail
 - [ ] login using facebook
 - [ ] filtering data dto, pass it in the findAll method (use it in the query builder)
-- [ ] make apiResponse a method to return a response in the base controller
+- [x] make apiResponse a method to return a response in the base controller
 - [ ] add the status code as a param in the apiResponse method in the base controller (default is 200)
-- [ ] separate returning response logic into two different methods, one for the success and another for the fail
+- [x] separate returning response logic into two different methods, one for the success and another for the fail
 - [x] apply permissions in a generic way into the base controller so all controller has the permissions decorator by default
 - [x] add permissions file into roles and users module
