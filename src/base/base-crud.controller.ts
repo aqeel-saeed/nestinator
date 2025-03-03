@@ -1,6 +1,5 @@
 import { Body, Delete, Get, Param, Post, Put, Req } from '@nestjs/common';
 import { BaseService } from './base.service';
-import { apiResponse } from 'src/shared/utils/utils';
 import { ApiBody, ApiParam, ApiTags } from '@nestjs/swagger';
 import { FindOneParams } from 'src/shared/params/find-one.params';
 import { DeepPartial } from 'typeorm';
@@ -27,7 +26,7 @@ export function BaseCrudController<T, CreateDto, UpdateDto>(
     @Get()
     async findAll() {
       const res = await this.service.findAll();
-      return apiResponse(
+      return this.successResponse(
         res,
         `${moduleConfig.entityPluralName} retrieved successfully.`,
       );
@@ -38,7 +37,7 @@ export function BaseCrudController<T, CreateDto, UpdateDto>(
     @ApiParam({ name: 'id', type: Number, description: 'Id of the item' })
     async findById(@Param() { id }: FindOneParams) {
       const res = await this.service.findById(+id);
-      return apiResponse(
+      return this.successResponse(
         res,
         `${moduleConfig.entitySingleName} retrieved successfully.`,
       );
@@ -50,7 +49,7 @@ export function BaseCrudController<T, CreateDto, UpdateDto>(
     // eslint-disable-next-line @typescript-eslint/no-unused-vars
     async create(@Body() data: CreateDto, @Req() _req) {
       const res = await this.service.create(data as DeepPartial<T>);
-      return apiResponse(
+      return this.successResponse(
         res,
         `${moduleConfig.entitySingleName} created successfully.`,
       );
@@ -67,7 +66,7 @@ export function BaseCrudController<T, CreateDto, UpdateDto>(
       @Req() _req,
     ) {
       const res = await this.service.update(+id, data as DeepPartial<T>);
-      return apiResponse(
+      return this.successResponse(
         res,
         `${moduleConfig.entitySingleName} updated successfully.`,
       );
@@ -78,7 +77,7 @@ export function BaseCrudController<T, CreateDto, UpdateDto>(
     @Delete(':id')
     async delete(@Param() { id }: FindOneParams) {
       await this.service.delete(+id);
-      return apiResponse(
+      return this.successResponse(
         null,
         `${moduleConfig.entitySingleName} deleted successfully.`,
       );
