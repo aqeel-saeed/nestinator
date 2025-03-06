@@ -6,17 +6,16 @@ import {
   ManyToMany,
   OneToMany,
   OneToOne,
-  PrimaryGeneratedColumn,
 } from 'typeorm';
 import { Address } from './address.entity';
 import { Post } from '../../posts/entities/post.entity';
 import { Role } from '../../roles/entities/role.entity';
+import { BaseEntity } from '../../../base/entities/base.entity';
+import { EnableSoftDelete } from '../../../shared/decorators/soft-delete.decorator';
 
+@EnableSoftDelete()
 @Entity('users')
-export class User {
-  @PrimaryGeneratedColumn()
-  public id?: number;
-
+export class User extends BaseEntity {
   @Column({ unique: true })
   public email: string;
 

@@ -1,12 +1,10 @@
-import { Column, Entity, ManyToMany, PrimaryGeneratedColumn } from 'typeorm';
+import { Column, Entity, ManyToMany } from 'typeorm';
 import { PermissionsEnum } from '../../../shared/enums/permissions.enum';
 import { Role } from '../../../modules/roles/entities/role.entity';
+import { BaseEntity } from '../../../base/entities/base.entity';
 
 @Entity('permissions')
-export class Permission {
-  @PrimaryGeneratedColumn()
-  public id?: number;
-
+export class Permission extends BaseEntity {
   @Column({
     type: 'enum',
     enum: PermissionsEnum,

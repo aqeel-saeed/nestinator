@@ -1,11 +1,9 @@
-import { Column, Entity, ManyToMany, PrimaryGeneratedColumn } from 'typeorm';
+import { Column, Entity, ManyToMany } from 'typeorm';
 import { Post } from '../../posts/entities/post.entity';
+import { BaseEntity } from '../../../base/entities/base.entity';
 
 @Entity('categories')
-export class Category {
-  @PrimaryGeneratedColumn()
-  public id: number;
-
+export class Category extends BaseEntity {
   @Column()
   name: string;
 
