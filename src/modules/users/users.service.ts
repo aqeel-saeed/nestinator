@@ -1,32 +1,27 @@
 import { Injectable } from '@nestjs/common';
-import { InjectRepository } from '@nestjs/typeorm';
 import { User } from './entities/user.entity';
 import { EntityNotFoundException } from 'src/shared/exceptions/not-found.exception';
 import { BaseService } from 'src/base/base.service';
 import { UserRepository } from './repositories/user.repository';
+import { FindOneOptions } from 'typeorm';
 
 @Injectable()
 export class UsersService extends BaseService<User> {
-  constructor(
-    @InjectRepository(User)
-    private readonly userRepository: UserRepository,
-  ) {
+  constructor(private readonly userRepository: UserRepository) {
     super(userRepository);
   }
 
   async getByEmail(email: string) {
-    const user = await this.userRepository.findOne({ where: { email } });
-    if (user) {
-      return user;
-    }
-    throw new EntityNotFoundException('User');
+    return this.userRepository.getByEmail(email);
   }
 
   async getUserPermissions(userId: number) {
-    const user = await this.userRepository.findOne({
+    const options: FindOneOptions<User> = {
       where: { id: userId },
       relations: ['roles', 'roles.permissions'],
-    });
+    };
+
+    const user = await this.userRepository.findOneRaw(options);
 
     if (!user) {
       throw new EntityNotFoundException('User', userId);
@@ -43,9 +38,11 @@ export class UsersService extends BaseService<User> {
   }
 
   async getByIdWithPermissions(userId: number) {
-    return this.userRepository.findOne({
+    const options: FindOneOptions<User> = {
       where: { id: userId },
       relations: ['roles', 'roles.permissions'],
-    });
+    };
+
+    return this.userRepository.findOneRaw(options);
   }
 }

@@ -7,7 +7,7 @@ import { UseAuthAndPermissionsIf } from 'src/shared/decorators/conditional-auth.
 import { BaseCrudControllerConfig } from './interfaces/base-controller-config.interface';
 import { BaseController } from './base.controller';
 
-export function BaseCrudController<T, CreateDto, UpdateDto>(
+export function BaseCrudController<T extends object, CreateDto, UpdateDto>(
   moduleConfig: BaseCrudControllerConfig,
   CreateDtoClass: new () => CreateDto,
   UpdateDtoClass: new () => UpdateDto,

@@ -24,5 +24,7 @@ export function EnableSoftDelete() {
 }
 
 export function isSoftDeleteEnabled(target: object): boolean {
-  return Reflect.getMetadata(SOFT_DELETE_METADATA_KEY, target) || false;
+  return (
+    Reflect.getMetadata(SOFT_DELETE_METADATA_KEY, target.constructor) || false
+  );
 }
