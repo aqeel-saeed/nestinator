@@ -24,7 +24,7 @@ export class AdminUserSeeder extends BaseSeeder<User> {
         name: 'admin',
         password: hashedPassword,
         isVerified: true,
-      },
+      } as User,
     ];
 
     return users;
