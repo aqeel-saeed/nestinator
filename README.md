@@ -97,3 +97,6 @@ $ npm run seed
 - [x] separate returning response logic into two different methods, one for the success and another for the fail
 - [x] apply permissions in a generic way into the base controller so all controller has the permissions decorator by default
 - [x] add permissions file into roles and users module
+- [ ] add pagination like filtering
+- [ ] add sort like filtering
+- [ ] add sort keys, and check how to set sortable keys and return them to the front end

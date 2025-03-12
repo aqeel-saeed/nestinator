@@ -1,11 +1,21 @@
-import { Body, Delete, Get, Param, Post, Put, Req } from '@nestjs/common';
+import {
+  Body,
+  Delete,
+  Get,
+  Param,
+  Post,
+  Put,
+  Query,
+  Req,
+} from '@nestjs/common';
 import { BaseService } from './base.service';
-import { ApiBody, ApiParam, ApiTags } from '@nestjs/swagger';
+import { ApiBody, ApiParam, ApiQuery, ApiTags } from '@nestjs/swagger';
 import { FindOneParams } from 'src/shared/params/find-one.params';
 import { DeepPartial } from 'typeorm';
 import { UseAuthAndPermissionsIf } from 'src/shared/decorators/conditional-auth.decorator';
 import { BaseCrudControllerConfig } from './interfaces/base-controller-config.interface';
 import { BaseController } from './base.controller';
+import { Filtering } from '../core/data-filtering/filtering.interface';
 
 export function BaseCrudController<T extends object, CreateDto, UpdateDto>(
   moduleConfig: BaseCrudControllerConfig,
@@ -24,8 +34,23 @@ export function BaseCrudController<T extends object, CreateDto, UpdateDto>(
 
     @UseAuthAndPermissionsIf(authConditions.index)
     @Get()
-    async findAll() {
-      const res = await this.service.findAll();
+    @ApiQuery({
+      name: 'filters',
+      type: String,
+      required: false,
+      description: 'JSON string of filtering criteria',
+    })
+    async findAll(@Query('filters') filters?: string) {
+      let parsedFilters: Filtering[] = [];
+      if (filters) {
+        try {
+          parsedFilters = JSON.parse(filters);
+          // eslint-disable-next-line @typescript-eslint/no-unused-vars
+        } catch (_error) {
+          throw new Error('Invalid filters provided');
+        }
+      }
+      const res = await this.service.findAll(parsedFilters);
       return this.successResponse(
         `${moduleConfig.entityPluralName} retrieved successfully.`,
         res,

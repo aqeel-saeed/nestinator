@@ -7,14 +7,33 @@ import {
   Repository,
 } from 'typeorm';
 import { isSoftDeleteEnabled } from '../shared/decorators/soft-delete.decorator';
+import { FilteringService } from '../core/data-filtering/filtering.service';
+import { FilterBuilder } from '../core/data-filtering/filter-builder';
+import { Filtering } from '../core/data-filtering/filtering.interface';
 
 @Injectable()
 export class BaseRepository<T extends object> {
-  constructor(private readonly repository: Repository<T>) {}
+  private filterBuilder: FilterBuilder<T>;
 
-  // Add custom methods here
-  async findAll(): Promise<T[]> {
-    return this.repository.find();
+  constructor(
+    private readonly repository: Repository<T>,
+    private readonly filteringService: FilteringService<T>,
+  ) {
+    this.filterBuilder = new FilterBuilder<T>(
+      filteringService.getStrategyRegistry(),
+    );
+  }
+
+  async findAll(filters?: Filtering[]): Promise<T[]> {
+    const options: FindManyOptions<T> = {};
+
+    if (filters && filters.length > 0) {
+      options.where = this.filterBuilder.build(filters);
+    }
+
+    // TODO: add pagination and sort here in the options.order and options.skip and options.take
+
+    return this.repository.find(options);
   }
 
   async findById(id: number): Promise<T> {
