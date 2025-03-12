@@ -1,4 +1,4 @@
-import { FilterRule } from '../../shared/enums/filter-type.enum';
+import { FilterRule } from '../../enums/filter-type.enum';
 import { FilterStrategy } from './filter-strategy.interface';
 
 export class FilterStrategyRegistry<T> {

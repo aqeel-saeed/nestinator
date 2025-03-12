@@ -3,7 +3,7 @@ import { InjectRepository } from '@nestjs/typeorm';
 import { User } from '../entities/user.entity';
 import { BaseRepository } from 'src/base/base.repository';
 import { FindOptionsWhere, Repository } from 'typeorm';
-import { FilteringService } from '../../../core/data-filtering/filtering.service';
+import { FilteringService } from '../../../shared/utils/data-filtering/filtering.service';
 
 @Injectable()
 export class UserRepository extends BaseRepository<User> {

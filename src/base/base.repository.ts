@@ -7,9 +7,9 @@ import {
   Repository,
 } from 'typeorm';
 import { isSoftDeleteEnabled } from '../shared/decorators/soft-delete.decorator';
-import { FilteringService } from '../core/data-filtering/filtering.service';
-import { FilterBuilder } from '../core/data-filtering/filter-builder';
-import { Filtering } from '../core/data-filtering/filtering.interface';
+import { FilterBuilder } from '../shared/utils/data-filtering/filter-builder';
+import { FilteringService } from '../shared/utils/data-filtering/filtering.service';
+import { Filtering } from '../shared/utils/data-filtering/filtering.interface';
 
 @Injectable()
 export class BaseRepository<T extends object> {

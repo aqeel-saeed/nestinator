@@ -1,4 +1,4 @@
-import { FilterRule, FilterType } from '../../shared/enums/filter-type.enum';
+import { FilterRule, FilterType } from '../../enums/filter-type.enum';
 
 export interface Filtering {
   property: string;

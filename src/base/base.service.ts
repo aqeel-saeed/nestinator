@@ -1,6 +1,6 @@
 import { DeepPartial } from 'typeorm';
 import { BaseRepository } from './base.repository';
-import { Filtering } from '../core/data-filtering/filtering.interface';
+import { Filtering } from '../shared/utils/data-filtering/filtering.interface';
 
 export class BaseService<T extends object> {
   constructor(protected readonly repository: BaseRepository<T>) {}

@@ -15,7 +15,7 @@ import { DeepPartial } from 'typeorm';
 import { UseAuthAndPermissionsIf } from 'src/shared/decorators/conditional-auth.decorator';
 import { BaseCrudControllerConfig } from './interfaces/base-controller-config.interface';
 import { BaseController } from './base.controller';
-import { Filtering } from '../core/data-filtering/filtering.interface';
+import { Filtering } from '../shared/utils/data-filtering/filtering.interface';
 
 export function BaseCrudController<T extends object, CreateDto, UpdateDto>(
   moduleConfig: BaseCrudControllerConfig,

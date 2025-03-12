@@ -14,7 +14,7 @@ import {
   NotInFilter,
   NotLikeFilter,
 } from './filters';
-import { FilterRule } from '../../shared/enums/filter-type.enum';
+import { FilterRule } from '../../enums/filter-type.enum';
 
 @Injectable()
 export class FilteringService<T> {
